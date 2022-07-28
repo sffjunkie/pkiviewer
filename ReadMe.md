@@ -168,13 +168,13 @@ The default colors are
 
 ```toml
 [theme]
-default = white
-error = red
-warning = yellow
-info = green
-key = blue
-value = white
-extension_critical = yellow
+default = "white"
+error = "red"
+warning = "yellow"
+info = "green"
+key = "blue"
+value = "white"
+extension_critical = "yellow"
 ```
 
 ### Information Visibility
