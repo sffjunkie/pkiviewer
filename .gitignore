@@ -1,0 +1,16 @@
+__pycache__
+.mypy_cache
+.pytest_cache
+.python-version
+.vscode
+/dist
+/file
+out.txt
+pkiviewer.toml
+
+# Future features
+src/pkiviewer/asn1
+src/pkiviewer/model/crl.py
+src/pkiviewer/model/csr.py
+src/pkiviewer/ui/display/crl.py
+src/pkiviewer/ui/display/csr.py

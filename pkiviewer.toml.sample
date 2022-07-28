@@ -1,0 +1,71 @@
+[theme]
+"default" = "white"
+"error" = "red"
+"warning" = "yellow"
+"info" = "green"
+"key" = "white"
+"value" = "red"
+"extension_critical" = "yellow"
+
+
+# Certificate element visibility
+# One of "normal", "hidden", "lowlight", "highlight"
+[visibility]
+".Header" = "normal"
+".Header.Filename" = "normal"
+".Signature" = "normal"
+".Signature.Algorithm" = "normal"
+".Signature.Value" = "normal"
+".Data" = "normal"
+".Data.Version" = "normal"
+".Data.SerialNumber" = "normal"
+".Data.Issuer" = "normal"
+".Data.Fingerprint" = "normal"
+".Data.Validity" = "normal"
+".Data.Validity.Before" = "normal"
+".Data.Validity.After" = "normal"
+".Data.Subject" = "normal"
+".Data.Subject.Name" = "normal"
+".Data.Subject.PublicKey" = "normal"
+".Data.Subject.PublicKey.Algorithm" = "normal"
+".Data.Extensions" = "normal"
+".Data.Extension.Critical" = "normal"
+".Data.Extension.Value" = "normal"
+".Data.Extension.AuthorityKeyIdentifier" = "normal"
+".Data.Extension.AuthorityKeyIdentifier.Value" = "normal"
+".Data.Extension.SubjectKeyIdentifier" = "normal"
+".Data.Extension.SubjectKeyIdentifier.Value" = "normal"
+".Data.Extension.KeyUsage" = "normal"
+".Data.Extension.KeyUsage.Value" = "normal"
+".Data.Extension.CertificatePolicies" = "normal"
+".Data.Extension.CertificatePolicies.Value" = "normal"
+".Data.Extension.SubjectAlternativeName" = "normal"
+".Data.Extension.SubjectAlternativeName.Value" = "normal"
+".Data.Extension.IssuerAlternativeName" = "normal"
+".Data.Extension.IssuerAlternativeName.Value" = "normal"
+".Data.Extension.BasicConstraints" = "normal"
+".Data.Extension.BasicConstraints.Value" = "normal"
+".Data.Extension.NameConstraints" = "normal"
+".Data.Extension.NameConstraints.Value" = "normal"
+".Data.Extension.ExtendedKeyUsage" = "normal"
+".Data.Extension.ExtendedKeyUsage.Value" = "normal"
+".Data.Extension.CRLDistributionPoints" = "normal"
+".Data.Extension.CRLDistributionPoints.Value" = "normal"
+".Data.Extension.InhibitAnyPolicy" = "normal"
+".Data.Extension.InhibitAnyPolicy.Value" = "normal"
+".Data.Extension.AuthorityInformationAccess" = "normal"
+".Data.Extension.AuthorityInformationAccess.Value" = "normal"
+".Data.Extension.SubjectInformationAccess" = "normal"
+".Data.Extension.SubjectInformationAccess.Value" = "normal"
+".Data.Extension.CertificateSCTs" = "normal"
+".Data.Extension.CertificateSCTs.Value" = "normal"
+".Data.Extension.PreCertificateSCTs" = "normal"
+".Data.Extension.PreCertificateSCTs.Value" = "normal"
+
+# set svg or html to the output filename
+[output]
+# svg =
+# html =
+
+[output.options]
+width = 100
