@@ -25,7 +25,7 @@ Also Coming Soon™ is Certificate Transparency information.
    fancy output/SVG & HTML generation and
    [cryptography](https://cryptography.io/en/latest/) for the low level parsing.
 
-1. It stcks fairly closely to the output from the `openssl` binary
+1. It sticks fairly closely to the output from the `openssl` binary
 
 DER format certificates should have the extension '.cer' and PKCS#12 '.p12'
 
