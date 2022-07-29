@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "pkiviewer"
-version = "0.1.0"
-description = "PKI Viewer"
+version = "0.1.1"
+description = "PKI file viewer"
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
 license = "Apache-2.0"
+readme = "ReadMe.md"
+requires-python = ">=3.10"
 
 packages = [
     { include = "pkiviewer", from = "src" },
@@ -12,6 +14,10 @@ packages = [
 include = [
     { path = "tests", format = "sdist" }
 ]
+
+[project.urls]
+"Homepage" = "https://github.com/sffjunkie/pkiviewer"
+"Bug Tracker" = "https://github.com/sffjunkie/pkiviewer/issues"
 
 [tool.poetry.dependencies]
 python = "^3.10"

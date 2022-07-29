@@ -30,7 +30,7 @@ from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCert
 from pkiviewer.model.p12 import p12_key_and_certificates_parse
 from pkiviewer.view.display.p12 import p12_display
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Simon Kennedy <sffjunkie+code@gmail.com>"
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
