@@ -258,7 +258,7 @@ OidNames: OidDatabase = {
         "GOST R 34.10-2012 with 34.11-2012 512", "RFC9215, RFC7091, RFC6986"
     ),
     SignatureAlgorithmOID.GOSTR3411_94_WITH_3410_2001.dotted_string: OidInfo(
-        "GOST R 34.11-94", "RFC4397, RFC4491"
+        "GOST R 34.11-94", "RFC4491"
     ),
     "1.2.156.10197.1.501": OidInfo("SM2 signature with SM3 hashing", None),
     "1.2.840.113549.1.1.10": OidInfo(
