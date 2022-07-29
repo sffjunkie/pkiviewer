@@ -11,14 +11,14 @@ from pkiviewer.model.certificate import certiticate_parse
 
 @pytest.mark.parametrize(
     "cert_file",
-    ["download/microsoft.pem", "openssl_certs/server-ed25519-cert.pem"],
+    ["microsoft.pem"],
 )
 def test_certificate_parsing(cert_file: str):
     config_load()
     rich_init()
 
     p = Path(__file__).parent
-    fullpath = p / ".." / ".." / "file" / cert_file
+    fullpath = p / ".." / "file" / cert_file
     fullpath = fullpath.resolve()
     certificates = load(fullpath)
     if isinstance(certificates[0], Certificate):
