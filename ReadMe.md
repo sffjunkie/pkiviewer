@@ -27,7 +27,7 @@ Also Coming Soon™ is Certificate Transparency information.
 
 1. It sticks fairly closely to the output from the `openssl` binary
 
-DER format certificates should have the extension '.cer' and PKCS#12 '.p12'
+DER format certificates should have the extension `.cer` and PKCS#12 `.p12`
 
 ## PKCS#12 Files
 
