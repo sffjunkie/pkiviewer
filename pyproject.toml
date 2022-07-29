@@ -5,7 +5,6 @@ description = "PKI file viewer"
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
 license = "Apache-2.0"
 readme = "ReadMe.md"
-requires-python = ">=3.10"
 
 packages = [
     { include = "pkiviewer", from = "src" },
