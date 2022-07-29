@@ -93,8 +93,11 @@ config_file = "pkiviewer.toml"
 
 def config_from_file(filename: str) -> Configuration:
     config_file_config = {}
-    with open(filename, "rb") as fp:
-        config_file_config = tomli.load(fp)
+    try:
+        with open(filename, "rb") as fp:
+            config_file_config = tomli.load(fp)
+    except FileNotFoundError:
+        pass
 
     return cast(Configuration, config_file_config)
 
