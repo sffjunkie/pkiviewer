@@ -14,3 +14,4 @@ src/pkiviewer/model/csr.py
 src/pkiviewer/ui/display/csr.py
 src/pkiviewer/asn1/smime_capabilities.py
 src/pkiviewer/asn1/specs/future
+src/pkiviewer/asn1/json_encoder.py
