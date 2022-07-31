@@ -239,3 +239,7 @@ The following items control what is output.
 ".Signature.Algorithm" = "normal"                              # The signature algorithm
 ".Signature.Value" = "normal"                                  # The signature value
 ```
+
+## Package Info
+
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/sffjunkie/pkiviewer/pkiviewer-test) ![PyPI - Downloads](https://img.shields.io/pypi/dm/pkiviewer)
