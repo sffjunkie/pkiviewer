@@ -5,7 +5,7 @@ Displays information in the terminal from the following PKI file types
 - Certificates
 - PKCS#12 files
 - Certificate Signing Request (Coming Soon™)
-- Certificate Revocation List (Coming Soon™)
+- Certificate Revocation List
 
 Also Coming Soon™ is Certificate Transparency information.
 

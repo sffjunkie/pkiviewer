@@ -22,9 +22,9 @@ from pkiviewer.view.display.certificate import (
 # from pkiviewer.model.csr import certificate_signing_request_parse
 # from pkiviewer.ui.rich.output.csr import certificate_signing_request_display
 
-# from cryptography.x509 import CertificateRevocationList
-# from pkiviewer.model.crl import certiticate_revocation_list_parse
-# from pkiviewer.ui.rich.output.crl import certificate_signing_request_display
+from cryptography.x509 import CertificateRevocationList
+from pkiviewer.model.crl import certiticate_revocation_list_parse
+from pkiviewer.view.display.crl import certificate_revocation_list_display
 
 from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from pkiviewer.model.p12 import p12_key_and_certificates_parse
@@ -124,8 +124,9 @@ def run(
             #     certificate_signing_request_display(csr_info)
 
             # TODO: Certificate Revocation List
-            # elif isinstance(element, CertificateRevocationList):  # type: ignore
-            #     crl_info = certiticate_revocation_list_parse(element, fname)
+            elif isinstance(element, CertificateRevocationList):  # type: ignore
+                crl_info = certiticate_revocation_list_parse(element, fname)
+                certificate_revocation_list_display(crl_info)
 
             elif isinstance(element, PKCS12KeyAndCertificates):  # type: ignore
                 p12_info = p12_key_and_certificates_parse(element, fname)

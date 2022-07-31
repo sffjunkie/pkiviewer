@@ -16,6 +16,7 @@ from pkiviewer.view.console import (
 from pkiviewer.view.display import extension
 from pkiviewer.view.formatter import (
     bytes_to_hex_long,
+    format_date_time,
     format_name,
 )
 from pkiviewer.oid import OidNames
@@ -64,7 +65,7 @@ def extensions_display(
                 func = None
 
             if func:
-                func(extension_info, indent=indent + 1)
+                func(extension_info, indent + 1, visibility)
             else:
                 print(extension_info)
 
@@ -124,8 +125,16 @@ def signature_display(crl_info: CertificateRevocationListInfo, indent: int = 0) 
             )
 
 
-# TODO: Complete this
-def certificate_signing_request_display(
+def crl_display(crl_info: CertificateRevocationListInfo, indent: int = 0) -> None:
+    print_key_oneline("Revocation List:", indent=indent)
+    for revocation in crl_info["revoked_certificates"]:
+        key = revocation["certificate_id"]
+        print_key_value_oneline("Certificate ID:", key, indent=indent + 1)
+        value = format_date_time(revocation["revocation_date"])
+        print_key_value_oneline("Revocation Date:", value, indent=indent + 1)
+
+
+def certificate_revocation_list_display(
     crl_info: CertificateRevocationListInfo,
 ) -> None:
     print_key_oneline("Certificate Revocation List:")
@@ -146,9 +155,9 @@ def certificate_signing_request_display(
             )
 
         issuer_display(crl_info, indent=2)
-
         fingerprint_display(crl_info, indent=2)
         extensions_display(crl_info, indent=2)
+        crl_display(crl_info, indent=2)
 
     visibility = get_element_visibility(".Signature")
     if visibility != Visibility.HIDDEN:

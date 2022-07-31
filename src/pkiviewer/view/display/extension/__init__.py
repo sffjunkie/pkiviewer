@@ -57,6 +57,10 @@ from pkiviewer.view.display.extension.inhibit_any_policy import (
 from pkiviewer.view.display.extension.freshest_crl_display import (
     freshest_crl_display,
 )
+from pkiviewer.view.display.extension.crl_number import crl_number_display
+from pkiviewer.view.display.extension.issuing_distribution_point import (
+    issuing_distribution_point_display,
+)
 
 
 v3_extension_display: dict[Oid, ExtensionDisplayMethod] = {
@@ -66,8 +70,10 @@ v3_extension_display: dict[Oid, ExtensionDisplayMethod] = {
     ExtensionOID.BASIC_CONSTRAINTS.dotted_string: basic_constraints_display,
     ExtensionOID.CERTIFICATE_POLICIES.dotted_string: certificate_policies_display,
     ExtensionOID.CRL_DISTRIBUTION_POINTS.dotted_string: crl_distribution_points_display,
+    ExtensionOID.CRL_NUMBER.dotted_string: crl_number_display,
     ExtensionOID.EXTENDED_KEY_USAGE.dotted_string: extended_key_usage_display,
     ExtensionOID.ISSUER_ALTERNATIVE_NAME.dotted_string: issuer_alternative_name_display,
+    ExtensionOID.ISSUING_DISTRIBUTION_POINT.dotted_string: issuing_distribution_point_display,
     ExtensionOID.KEY_USAGE.dotted_string: key_usage_display,
     ExtensionOID.SIGNED_CERTIFICATE_TIMESTAMPS.dotted_string: signed_certificate_timestamps_display,
     ExtensionOID.SUBJECT_ALTERNATIVE_NAME.dotted_string: subject_alternative_name_display,

@@ -10,8 +10,7 @@ pkiviewer.toml
 process_all.sh
 
 # Future features
-src/pkiviewer/asn1
-src/pkiviewer/model/crl.py
 src/pkiviewer/model/csr.py
-src/pkiviewer/ui/display/crl.py
 src/pkiviewer/ui/display/csr.py
+src/pkiviewer/asn1/smime_capabilities.py
+src/pkiviewer/asn1/specs/future

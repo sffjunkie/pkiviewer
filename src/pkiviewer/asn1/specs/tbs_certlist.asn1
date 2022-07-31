@@ -1,0 +1,78 @@
+TBSCertListModule DEFINITIONS ::= BEGIN
+     AttributeTypeAndValue ::= SEQUENCE {
+          type     AttributeType,
+          value    AttributeValue }
+
+     AttributeType ::= OBJECT IDENTIFIER
+
+     AttributeValue ::= ANY -- DEFINED BY AttributeType
+
+     Name ::= CHOICE { -- only one possibility for now --
+          rdnSequence  RDNSequence }
+
+     RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+
+     DistinguishedName ::= RDNSequence
+
+     RelativeDistinguishedName ::= SET SIZE (1..MAX) OF AttributeTypeAndValue
+
+     Version ::= INTEGER { v1(0), v2(1), v3(2) }
+
+     CertificateSerialNumber ::= INTEGER
+
+     Validity ::= SEQUENCE {
+          notBefore      Time,
+          notAfter       Time }
+
+     Time ::= CHOICE {
+          utcTime        UTCTime,
+          generalTime    GeneralizedTime }
+
+     UniqueIdentifier ::= BIT STRING
+
+     SubjectPublicKeyInfo ::= SEQUENCE {
+          algorithm            AlgorithmIdentifier,
+          subjectPublicKey     BIT STRING }
+
+     Extensions ::= SEQUENCE SIZE (1..MAX) OF Extension
+
+     Extension ::= SEQUENCE {
+          extnID      OBJECT IDENTIFIER,
+          critical    BOOLEAN DEFAULT FALSE,
+          extnValue   OCTET STRING
+                    -- contains the DER encoding of an ASN.1 value
+                    -- corresponding to the extension type identified
+                    -- by extnID
+          }
+
+     CertificateList ::= SEQUENCE {
+          tbsCertList          TBSCertList,
+          signatureAlgorithm   AlgorithmIdentifier,
+          signature            BIT STRING }
+
+     TBSCertList ::= SEQUENCE {
+          version                 Version OPTIONAL,
+                                        -- if present, MUST be v2
+          signature               AlgorithmIdentifier,
+          issuer                  Name,
+          thisUpdate              Time,
+          nextUpdate              Time OPTIONAL,
+          revokedCertificates     SEQUENCE OF SEQUENCE {
+               userCertificate         CertificateSerialNumber,
+               revocationDate          Time,
+               crlEntryExtensions      Extensions OPTIONAL
+                                        -- if present, version MUST be v2
+                                   }  OPTIONAL,
+          crlExtensions           [0] Extensions OPTIONAL }
+                                        -- if present, version MUST be v2
+
+     -- Version, Time, CertificateSerialNumber, and Extensions were
+     -- defined earlier for use in the certificate structure
+
+     AlgorithmIdentifier ::= SEQUENCE {
+          algorithm               OBJECT IDENTIFIER,
+          parameters              ANY DEFINED BY algorithm OPTIONAL }
+                                   -- contains a value of the type
+                                   -- registered for use with the
+                                   -- algorithm object identifier value
+END
