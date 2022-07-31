@@ -1,6 +1,6 @@
 from typing import Any
 
-from pkiviewer.asn1.load_specification import load_asn1_specification
+from pkiviewer.asn1.load_specification import load_asn1_specification  # type: ignore
 
 
 def decode_crl(data: bytes) -> dict[Any, Any] | None:
