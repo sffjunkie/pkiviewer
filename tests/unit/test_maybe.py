@@ -11,4 +11,4 @@ def test_maybe_should_return_a_value():
 def test_maybe_should_return_none():
     d = {"a": {"b": {"c": 3}}}
     assert maybe(d, "a.b.e") is None
-    assert maybe(d, "c") == None
+    assert maybe(d, "c") is None
