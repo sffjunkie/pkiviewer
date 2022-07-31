@@ -123,7 +123,6 @@ def run(
             #     csr_info = certificate_signing_request_parse(element, fname)
             #     certificate_signing_request_display(csr_info)
 
-            # TODO: Certificate Revocation List
             elif isinstance(element, CertificateRevocationList):  # type: ignore
                 crl_info = certiticate_revocation_list_parse(element, fname)
                 certificate_revocation_list_display(crl_info)
