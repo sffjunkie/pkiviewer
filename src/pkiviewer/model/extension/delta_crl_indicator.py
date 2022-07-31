@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import DeltaCRLIndicator, ExtensionType
+from cryptography.x509.extensions import DeltaCRLIndicator
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -11,11 +9,10 @@ class DeltaCRLIndicatorInfo(X509ExtensionTypeInfo):
 
 
 def delta_crl_indicator_parse(
-    extension: ExtensionType,
+    extension: DeltaCRLIndicator,
 ) -> DeltaCRLIndicatorInfo:
-    ext = cast(DeltaCRLIndicator, extension)
     ext_info: DeltaCRLIndicatorInfo = {
         "type": "DeltaCRLIndicator",
-        "crl_number": ext.crl_number,
+        "crl_number": extension.crl_number,
     }
     return ext_info

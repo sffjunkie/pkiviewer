@@ -1,7 +1,5 @@
-from typing import cast
-
 from cryptography.x509 import general_name
-from cryptography.x509.extensions import IssuerAlternativeName, ExtensionType
+from cryptography.x509.extensions import IssuerAlternativeName
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -12,9 +10,8 @@ class IssuerAlternativeNameInfo(X509ExtensionTypeInfo):
 
 # RFC5280 4.2.1.7
 def issuer_alternative_name_parse(
-    extension: ExtensionType,
+    extension: IssuerAlternativeName,
 ) -> IssuerAlternativeNameInfo:
-    ext = cast(IssuerAlternativeName, extension)
     names = {
         general_name.DNSName: "DNS",
         general_name.RFC822Name: "email",
@@ -25,7 +22,7 @@ def issuer_alternative_name_parse(
     ians: dict[str, list[str]] = {}
     for key, value in names.items():
         ian_list: list[str] = []
-        for address in ext.get_values_for_type(type(key)):
+        for address in extension.get_values_for_type(type(key)):
             ian_list.append(str(address))
         if ian_list:
             ians[value] = ian_list

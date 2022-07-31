@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import ExtendedKeyUsage, ExtensionType
+from cryptography.x509.extensions import ExtendedKeyUsage
 
 from pkiviewer.model import X509ExtensionTypeInfo
 from pkiviewer.oid import OidNames
@@ -11,11 +9,9 @@ class ExtendedKeyUsageInfo(X509ExtensionTypeInfo):
     usage: list[str]
 
 
-def extended_key_usage_parse(extension: ExtensionType) -> ExtendedKeyUsageInfo:
-    ext = cast(ExtendedKeyUsage, extension)
-
+def extended_key_usage_parse(extension: ExtendedKeyUsage) -> ExtendedKeyUsageInfo:
     items: list[str] = []
-    for u in ext._usages:  # type: ignore
+    for u in extension._usages:  # type: ignore
         items.append(OidNames[u.dotted_string].name)
 
     ext_info: ExtendedKeyUsageInfo = {"type": "ExtendedKeyUsage", "usage": items}

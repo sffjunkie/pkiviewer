@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import BasicConstraints, ExtensionType
+from cryptography.x509.extensions import BasicConstraints
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -11,12 +9,11 @@ class BasicConstraintsInfo(X509ExtensionTypeInfo):
     path_length: int
 
 
-def basic_constraints_parse(extension: ExtensionType) -> BasicConstraintsInfo:
-    ext = cast(BasicConstraints, extension)
-    path_length = ext.path_length if ext.path_length else 0
+def basic_constraints_parse(extension: BasicConstraints) -> BasicConstraintsInfo:
+    path_length = extension.path_length if extension.path_length else 0
     ext_info: BasicConstraintsInfo = {
         "type": "BasicConstraints",
-        "ca": ext.ca,
+        "ca": extension.ca,
         "path_length": path_length,
     }
     return ext_info

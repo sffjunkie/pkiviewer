@@ -1,7 +1,7 @@
 # from typing import cast
 
 # from cryptography.x509.extensions import OCSPNoCheck
-from cryptography.x509.extensions import ExtensionType
+from cryptography.x509.extensions import OCSPNoCheck
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -11,8 +11,7 @@ class OCSPNoCheckInfo(X509ExtensionTypeInfo):
     nocheck: bool
 
 
-def ocsp_nocheck_parse(extension: ExtensionType) -> OCSPNoCheckInfo:
-    # ext = cast(OCSPNoCheck, extension)
+def ocsp_nocheck_parse(extension: OCSPNoCheck) -> OCSPNoCheckInfo:
     ext_info: OCSPNoCheckInfo = {
         "type": "OCSPNoCheck",
         "nocheck": True,

@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import SubjectKeyIdentifier, ExtensionType
+from cryptography.x509.extensions import SubjectKeyIdentifier
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -11,11 +9,12 @@ class SubjectKeyIdentifierInfo(X509ExtensionTypeInfo):
     digest: bytes
 
 
-def subject_key_identifier_parse(extension: ExtensionType) -> SubjectKeyIdentifierInfo:
-    ext = cast(SubjectKeyIdentifier, extension)
+def subject_key_identifier_parse(
+    extension: SubjectKeyIdentifier,
+) -> SubjectKeyIdentifierInfo:
     ext_info: SubjectKeyIdentifierInfo = {
         "type": "SubjectKeyIdentifier",
-        "key_identifier": ext.key_identifier,
-        "digest": ext.digest,
+        "key_identifier": extension.key_identifier,
+        "digest": extension.digest,
     }
     return ext_info

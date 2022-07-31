@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import KeyUsage, ExtensionType
+from cryptography.x509.extensions import KeyUsage
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -10,26 +8,25 @@ class KeyUsageInfo(X509ExtensionTypeInfo):
     usage: list[str]
 
 
-def key_usage_parse(extension: ExtensionType) -> KeyUsageInfo:
+def key_usage_parse(extension: KeyUsage) -> KeyUsageInfo:
     items: list[str] = []
-    ext = cast(KeyUsage, extension)
-    if ext.digital_signature:
+    if extension.digital_signature:
         items.append("Digital Signature")
-    if ext.content_commitment:
+    if extension.content_commitment:
         items.append("Content Commitment (Non Repudiation)")
-    if ext.key_encipherment:
+    if extension.key_encipherment:
         items.append("Key Encipherment")
-    if ext.data_encipherment:
+    if extension.data_encipherment:
         items.append("Data Encipherment")
-    if ext.key_agreement:
+    if extension.key_agreement:
         items.append("Key Agreement")
-    if ext.key_cert_sign:
+    if extension.key_cert_sign:
         items.append("Certificate Sign")
-    if ext.crl_sign:
+    if extension.crl_sign:
         items.append("CRL Sign")
-    if ext.key_agreement and ext.encipher_only:
+    if extension.key_agreement and extension.encipher_only:
         items.append("Encipher Only")
-    if ext.key_agreement and ext.decipher_only:
+    if extension.key_agreement and extension.decipher_only:
         items.append("Decipher Only")
 
     usage: KeyUsageInfo = {"type": "KeyUsage", "usage": items}

@@ -1,6 +1,4 @@
-from typing import cast
-
-from cryptography.x509.extensions import FreshestCRL, ExtensionType
+from cryptography.x509.extensions import FreshestCRL
 
 from pkiviewer.model import (
     X509ExtensionTypeInfo,
@@ -17,12 +15,10 @@ class FreshestCRLInfo(X509ExtensionTypeInfo):
 
 
 def freshest_crl_parse(
-    extension: ExtensionType,
+    extension: FreshestCRL,
 ) -> FreshestCRLInfo:
-    ext = cast(FreshestCRL, extension)
-
     distribution_points: list[DistributionPointInfo] = []
-    for dp in ext._distribution_points:  # type: ignore
+    for dp in extension._distribution_points:  # type: ignore
         names: list[GeneralNameInfo] = []
 
         if dp.full_name:

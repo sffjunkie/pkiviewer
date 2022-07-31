@@ -1,9 +1,7 @@
-from typing import cast
-
 from pkiviewer.model import X509ExtensionTypeInfo
 from pkiviewer.types import CertificateSerialNumber
 from cryptography.x509.general_name import GeneralName
-from cryptography.x509.extensions import AuthorityKeyIdentifier, ExtensionType
+from cryptography.x509.extensions import AuthorityKeyIdentifier
 
 # RFC5280 4.2.1.1
 class AuthorityKeyIdentifierInfo(X509ExtensionTypeInfo):
@@ -13,13 +11,12 @@ class AuthorityKeyIdentifierInfo(X509ExtensionTypeInfo):
 
 
 def authority_key_identifier_parse(
-    extension: ExtensionType,
+    extension: AuthorityKeyIdentifier,
 ) -> AuthorityKeyIdentifierInfo:
-    ext = cast(AuthorityKeyIdentifier, extension)
     ext_info: AuthorityKeyIdentifierInfo = {
         "type": "AuthorityKeyIdentifier",
-        "key_identifier": ext.key_identifier,
-        "cert_issuer": ext.authority_cert_issuer,
-        "cert_serial_number": ext.authority_cert_serial_number,
+        "key_identifier": extension.key_identifier,
+        "cert_issuer": extension.authority_cert_issuer,
+        "cert_serial_number": extension.authority_cert_serial_number,
     }
     return ext_info

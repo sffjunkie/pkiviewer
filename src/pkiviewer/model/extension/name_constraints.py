@@ -1,6 +1,6 @@
-from typing import cast, Any
+from typing import Any
 
-from cryptography.x509.extensions import NameConstraints, ExtensionType
+from cryptography.x509.extensions import NameConstraints
 
 from pkiviewer.model import X509ExtensionTypeInfo, general_names_parse
 
@@ -11,11 +11,9 @@ class NameConstraintsInfo(X509ExtensionTypeInfo):
     excluded_subtrees: list[tuple[str, Any]]
 
 
-def name_constraints_parse(extension: ExtensionType) -> NameConstraintsInfo:
-    ext = cast(NameConstraints, extension)
-
-    permitted = general_names_parse(ext.permitted_subtrees)
-    excluded = general_names_parse(ext.excluded_subtrees)
+def name_constraints_parse(extension: NameConstraints) -> NameConstraintsInfo:
+    permitted = general_names_parse(extension.permitted_subtrees)
+    excluded = general_names_parse(extension.excluded_subtrees)
 
     ext_info: NameConstraintsInfo = {
         "type": "NameConstraints",
