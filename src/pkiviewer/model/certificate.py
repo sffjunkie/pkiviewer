@@ -20,8 +20,7 @@ def verbose() -> bool:
     return c["output"].get("verbose", False)
 
 
-class CertificateInfo(TypedDict, total=False):
-    filename: str
+class CertificateInfo(X509Info):
     version: Version
     serial_number: int
     signature: bytes
@@ -32,40 +31,26 @@ class CertificateInfo(TypedDict, total=False):
     subject: cryptography.x509.name.Name
     public_key: PublicKeyInfo | None
     extensions: dict[Oid, X509ExtensionInfo]
-    errors: list[Error]
-    warnings: list[Warning]
     fingerprint: bytes
 
 
 def certiticate_parse(cert: Certificate, filename: str):
-    info: CertificateInfo = {
-        "filename": filename,
-        "version": cert.version,
-        "serial_number": cert.serial_number,
-        "signature": cert.signature,
-        "signature_algorithm_oid": cert.signature_algorithm_oid.dotted_string,
-        "issuer": cert.issuer,
-        "not_valid_before": cert.not_valid_before,
-        "not_valid_after": cert.not_valid_after,
-        "subject": cert.subject,
-        "extensions": {},
-        "errors": [],
-        "warnings": [],
-        "fingerprint": cert.fingerprint(SHA256()),
-    }
+    errors: list[Error] = []
+    warnings: list[Warning] = []
 
     try:
         pk = cert.public_key()
-        info["public_key"] = public_key_info(pk)
+        pk_info = public_key_info(pk)
     except (cryptography.exceptions.UnsupportedAlgorithm, ValueError) as exc:
-        info["public_key"] = None
-        info["errors"].append(
+        pk_info = None
+        errors.append(
             Error(
                 module="cryptography",
                 text=f"Public key decode; {exc}",
             )
         )
 
+    extensions = {}
     if cert.version == Version.v3:
         try:
             se = sort_extensions_by_rfc_section(cert.extensions)
@@ -78,7 +63,7 @@ def certiticate_parse(cert: Certificate, filename: str):
                 try:
                     name = OidNames[oid].name
                 except KeyError:
-                    info["warnings"].append(
+                    warnings.append(
                         Warning(
                             module="pkiviewer",
                             text=f"Unknown extension name for oid {oid}, skipping",
@@ -99,13 +84,13 @@ def certiticate_parse(cert: Certificate, filename: str):
                             "info": func(extension.value),
                         }
 
-                        info["extensions"][oid] = extension_info
+                        extensions[oid] = extension_info
                 except KeyError as exc:
                     if oid in OidNames:
                         name = f"{OidNames[oid].name} (OID:{oid})"
                     else:
                         name = f"OID:{oid}"
-                    info["warnings"].append(
+                    warnings.append(
                         Warning(
                             module="pkiviewer",
                             text=f"Parse function for X.509 extension {name} not found",
@@ -114,5 +99,23 @@ def certiticate_parse(cert: Certificate, filename: str):
         except ValueError as exc:
             print(exc)
             _console.get().print_exception()
+
+    info: CertificateInfo = {
+        "type": "certificate",
+        "filename": filename,
+        "version": cert.version,
+        "serial_number": cert.serial_number,
+        "signature": cert.signature,
+        "signature_algorithm_oid": cert.signature_algorithm_oid.dotted_string,
+        "issuer": cert.issuer,
+        "not_valid_before": cert.not_valid_before,
+        "not_valid_after": cert.not_valid_after,
+        "subject": cert.subject,
+        "public_key": pk_info,
+        "extensions": extensions,
+        "errors": errors,
+        "warnings": warnings,
+        "fingerprint": cert.fingerprint(SHA256()),
+    }
 
     return info

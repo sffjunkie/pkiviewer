@@ -31,8 +31,7 @@ class RevocationInfo(TypedDict):
     revocation_date: RevokedAt
 
 
-class CertificateRevocationListInfo(TypedDict):
-    filename: str
+class CertificateRevocationListInfo(X509Info):
     signature: bytes | None
     signature_algorithm: str
     signature_algorithm_oid: str
@@ -40,13 +39,9 @@ class CertificateRevocationListInfo(TypedDict):
     issuer: cryptography.x509.name.Name
     last_update: datetime.datetime | None
     next_update: datetime.datetime | None
-    errors: list[Error]
-    warnings: list[Warning]
     fingerprint: bytes | None
     extensions: dict[Oid, X509ExtensionInfo]
     revoked_certificates: list[RevocationInfo]
-    errors: list[Error]
-    warnings: list[Warning]
     fingerprint: bytes | None
 
 
@@ -72,6 +67,9 @@ def revocation_info_parse(
 
 
 def certiticate_revocation_list_parse(crl: CertificateRevocationList, filename: str):
+    errors: list[Error] = []
+    warnings: list[Warning] = []
+
     rl = decode_tbs_certlist.decode_crl(crl.tbs_certlist_bytes)  # type: ignore
     revoked_certificates = revocation_info_parse(rl["revokedCertificates"])  # type: ignore
 
@@ -81,8 +79,6 @@ def certiticate_revocation_list_parse(crl: CertificateRevocationList, filename: 
         fingerprint = None
 
     extensions = {}
-    errors: list[Error] = []
-    warnings: list[Warning] = []
     try:
         for extension in crl.extensions:
             oid = extension.oid.dotted_string
@@ -122,6 +118,7 @@ def certiticate_revocation_list_parse(crl: CertificateRevocationList, filename: 
         errors.append(Error(module="pkiviewer", text=exc.args[0]))
 
     info: CertificateRevocationListInfo = {
+        "type": "crl",
         "filename": filename,
         "signature": crl.signature,
         "signature_algorithm": OidNames[crl.signature_algorithm_oid.dotted_string].name,

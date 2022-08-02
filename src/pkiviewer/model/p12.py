@@ -26,11 +26,14 @@ def p12_key_and_certificates_parse(
         )
 
     info: PKCS12KeyAndCertificateInfo = {
+        "type": "p12",
         "filename": filename,
         "name": "PKCS12KeyAndCertificate",
         "certificate": cert_info,
         "private_key": p12.key,
         "additional_certs": additional_cert_info,
+        "errors": [],
+        "warnings": [],
     }
 
     return info
