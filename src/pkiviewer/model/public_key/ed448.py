@@ -1,7 +1,7 @@
 from cryptography.hazmat.primitives.asymmetric.ed448 import Ed448PublicKey
 from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 
-from pkiviewer.model import PublicKeyInfo
+from pkiviewer.types import PublicKeyInfo
 
 
 class Ed448PublicKeyInfo(PublicKeyInfo):

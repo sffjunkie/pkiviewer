@@ -1,10 +1,10 @@
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import print_key_value_oneline
 from pkiviewer.view.theme import get_key_style, get_style, get_value_style
 from pkiviewer.view.visibility import (
+    Visibility,
     get_element_visibility,
     get_extension_value_visibility,
-    Visibility,
 )
 
 

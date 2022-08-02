@@ -6,7 +6,7 @@ from cryptography.x509.extensions import (
     PrecertificateSignedCertificateTimestamps,
 )
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 class PreCertificateSignedCertificateTimestampsInfo(X509ExtensionTypeInfo):

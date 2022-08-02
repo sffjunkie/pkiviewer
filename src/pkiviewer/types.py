@@ -2,8 +2,14 @@ from enum import Enum, auto
 from typing import Any, TypedDict, Callable
 
 from cryptography.x509.extensions import ExtensionType
-from pkiviewer.model import X509ExtensionInfo
-from pkiviewer.model import X509ExtensionTypeInfo
+from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
+from cryptography.x509 import (
+    Certificate,
+    CertificateRevocationList,
+    CertificateSigningRequest,
+)
+
+from pkiviewer.oid import Oid
 
 
 class Visibility(Enum):
@@ -25,10 +31,6 @@ class Configuration(TypedDict):
     output: ConfigSection
 
 
-ExtensionParseMethod = Callable[[ExtensionType], X509ExtensionTypeInfo]
-ExtensionDisplayMethod = Callable[[X509ExtensionInfo, int, Visibility], None]
-
-
 class Error(TypedDict):
     module: str
     text: str
@@ -37,3 +39,38 @@ class Error(TypedDict):
 class Warning(TypedDict):
     module: str
     text: str
+
+
+X509Types = (
+    Certificate
+    | CertificateRevocationList
+    | CertificateSigningRequest
+    | PKCS12KeyAndCertificates
+)
+
+
+class X509ExtensionTypeInfo(TypedDict):
+    type: str  # NOTE: type required as we can't use isinstance checks on a TypedDict
+
+
+class X509ExtensionInfo(TypedDict):
+    oid: Oid
+    name: str
+    critical: bool
+    info: X509ExtensionTypeInfo
+
+
+class X509Info(TypedDict):
+    type: str
+    filename: str
+    errors: list[Error]
+    warnings: list[Warning]
+
+
+class PublicKeyInfo(TypedDict):
+    type: str  # NOTE: type required as we can't use isinstance checks on a TypedDict
+    name: str
+
+
+ExtensionParseMethod = Callable[[ExtensionType], X509ExtensionTypeInfo]
+ExtensionDisplayMethod = Callable[[X509ExtensionInfo, int, Visibility], None]

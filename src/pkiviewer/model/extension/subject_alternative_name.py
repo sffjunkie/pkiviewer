@@ -7,7 +7,7 @@ from cryptography.x509.general_name import (
     UniformResourceIdentifier,
 )
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.6

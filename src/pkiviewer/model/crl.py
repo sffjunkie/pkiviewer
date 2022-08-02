@@ -9,10 +9,9 @@ from cryptography.x509 import CertificateRevocationList
 
 from pkiviewer.asn1 import decode_tbs_certlist
 from pkiviewer.context import _console  # type: ignore
-from pkiviewer.model import X509ExtensionInfo, X509Info
 from pkiviewer.model.extension import v3_extension_parse
 from pkiviewer.oid import Oid, OidNames
-from pkiviewer.types import Error, Warning
+from pkiviewer.types import Error, Warning, X509ExtensionInfo, X509Info
 
 CertificateID = int
 

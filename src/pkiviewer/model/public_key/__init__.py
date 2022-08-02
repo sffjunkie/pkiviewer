@@ -6,7 +6,7 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 from cryptography.hazmat.primitives.asymmetric.ed448 import Ed448PublicKey
 from cryptography.hazmat.primitives.asymmetric.types import CERTIFICATE_PUBLIC_KEY_TYPES
 
-from pkiviewer.model import PublicKeyInfo
+from pkiviewer.types import PublicKeyInfo
 from pkiviewer.model.public_key.dh import dh_public_key_info
 from pkiviewer.model.public_key.dsa import dsa_public_key_info
 from pkiviewer.model.public_key.ed448 import ed448_public_key_info

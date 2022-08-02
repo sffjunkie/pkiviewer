@@ -3,8 +3,8 @@ from typing import TypedDict, cast
 from cryptography.x509 import UserNotice
 from cryptography.x509.extensions import CertificatePolicies, ExtensionType
 
-from pkiviewer.model import X509ExtensionTypeInfo
 from pkiviewer.oid import Oid
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.4

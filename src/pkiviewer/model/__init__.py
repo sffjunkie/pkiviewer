@@ -1,17 +1,10 @@
 from typing import Any, TypedDict
 
-from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
-from cryptography.x509 import (
-    Certificate,
-    CertificateRevocationList,
-    CertificateSigningRequest,
-)
 from cryptography.x509.extensions import AccessDescription
 from cryptography.x509.general_name import GeneralName
 from cryptography.x509.name import RelativeDistinguishedName
 
-from pkiviewer.oid import Oid, OidNames
-from pkiviewer.types import Error, Warning
+from pkiviewer.oid import OidNames
 
 GeneralNameInfo = tuple[str, Any]
 
@@ -22,30 +15,6 @@ GeneralNameToShortName: dict[str, str] = {  # type: ignore
     "DirectoryName": "DirectoryName",
     "IPAddress": "IP",
 }
-
-
-X509Types = (
-    Certificate
-    | CertificateRevocationList
-    | CertificateSigningRequest
-    | PKCS12KeyAndCertificates
-)
-
-
-class X509ExtensionTypeInfo(TypedDict):
-    type: str  # NOTE: type required as we can't use isinstance checks on a TypedDict
-
-
-class X509ExtensionInfo(TypedDict):
-    oid: Oid
-    name: str
-    critical: bool
-    info: X509ExtensionTypeInfo
-
-
-class PublicKeyInfo(TypedDict):
-    type: str  # NOTE: type required as we can't use isinstance checks on a TypedDict
-    name: str
 
 
 class DistributionPointInfo(TypedDict):

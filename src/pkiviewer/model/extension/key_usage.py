@@ -2,7 +2,7 @@ from typing import cast
 
 from cryptography.x509.extensions import ExtensionType, KeyUsage
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.3

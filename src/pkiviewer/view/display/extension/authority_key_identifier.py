@@ -1,18 +1,19 @@
 from typing import cast
 
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.authority_key_identifier import (
     AuthorityKeyIdentifierInfo,
 )
-from pkiviewer.view.formatter import bytes_to_hex_long
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import (
-    print_key_oneline,
     print_hex_multiline,
+    print_key_oneline,
     print_key_value_multiline,
 )
-from pkiviewer.view.theme import get_key_style, get_value_style, INDENT_PER_LEVEL
+from pkiviewer.view.formatter import bytes_to_hex_long
+from pkiviewer.view.theme import INDENT_PER_LEVEL, get_key_style, get_value_style
 from pkiviewer.view.visibility import Visibility
-from pkiviewer.context import _console  # type: ignore
+
 
 # RFC5280 4.2.1.1
 # TODO: authority_key_identifier_display  cert_issuer, cert_serial_number

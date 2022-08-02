@@ -3,8 +3,7 @@ from typing import cast
 from cryptography.x509.extensions import AuthorityKeyIdentifier, ExtensionType
 from cryptography.x509.general_name import GeneralName
 
-from pkiviewer.model import X509ExtensionTypeInfo
-from pkiviewer.types import CertificateSerialNumber
+from pkiviewer.types import CertificateSerialNumber, X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.1

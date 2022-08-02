@@ -1,6 +1,6 @@
 from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
 
-from pkiviewer.model import PublicKeyInfo
+from pkiviewer.types import PublicKeyInfo
 
 
 class RSAPublicKeyInfo(PublicKeyInfo):

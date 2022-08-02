@@ -1,14 +1,12 @@
 from typing import cast
 
-from pkiviewer.model.extension.certificate_policy import (
-    CertificatePoliciesInfo,
-)
-from pkiviewer.model import X509ExtensionInfo
-from pkiviewer.oid import OidNames
-from pkiviewer.view.console import print_value_multiline, print_key_oneline
-from pkiviewer.view.theme import get_value_style, get_key_style
-from pkiviewer.view.visibility import Visibility
 from pkiviewer.context import _console  # type: ignore
+from pkiviewer.model.extension.certificate_policy import CertificatePoliciesInfo
+from pkiviewer.oid import OidNames
+from pkiviewer.types import X509ExtensionInfo
+from pkiviewer.view.console import print_key_oneline, print_value_multiline
+from pkiviewer.view.theme import get_key_style, get_value_style
+from pkiviewer.view.visibility import Visibility
 
 
 # RFC5280 4.2.1.4

@@ -2,11 +2,8 @@ from typing import cast
 
 from cryptography.x509.extensions import AuthorityInformationAccess, ExtensionType
 
-from pkiviewer.model import (
-    AccessDescriptionInfo,
-    X509ExtensionTypeInfo,
-    access_description_info,
-)
+from pkiviewer.model import AccessDescriptionInfo, access_description_info
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.2.1

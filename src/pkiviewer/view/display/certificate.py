@@ -2,53 +2,55 @@ import datetime
 from typing import cast
 
 from cryptography.x509 import Version
+
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.certificate import CertificateInfo
-from pkiviewer.oid import OidNames
 from pkiviewer.model.public_key.dh import DHPublicKeyInfo
 from pkiviewer.model.public_key.dsa import DSAPublicKeyInfo
 from pkiviewer.model.public_key.ed448 import Ed448PublicKeyInfo
 from pkiviewer.model.public_key.ed25519 import Ed25519PublicKeyInfo
 from pkiviewer.model.public_key.elliptic_curve import EllipticCurvePublicKeyInfo
 from pkiviewer.model.public_key.rsa import RSAPublicKeyInfo
-from pkiviewer.model import X509ExtensionInfo
-from pkiviewer.types import Warning
-from pkiviewer.view.display.public_key import dh, dsa, ed25519, ed448, elliptic_curve
-
-from pkiviewer.view.theme import (
-    get_key_style,
-    get_value_style,
-    Visibility,
-    get_key_value_styles,
-    get_style,
-)
+from pkiviewer.oid import OidNames
+from pkiviewer.types import ExtensionDisplayMethod, Warning, X509ExtensionInfo
 from pkiviewer.view.console import (
-    print_error,
     print_hex_multiline,
     print_key_oneline,
     print_key_value_multiline,
     print_key_value_oneline,
-    print_warning,
 )
-from pkiviewer.view.display.public_key import rsa
 from pkiviewer.view.display import extension
 from pkiviewer.view.display.extension.header import extension_header_display
+from pkiviewer.view.display.public_key import (
+    dh,
+    dsa,
+    ed448,
+    ed25519,
+    elliptic_curve,
+    rsa,
+)
 from pkiviewer.view.formatter import (
-    int_to_hex_short,
-    int_to_hex_long,
     bytes_to_hex_long,
+    format_date_time,
     format_name,
     format_version,
-    format_date_time,
+    int_to_hex_long,
+    int_to_hex_short,
 )
-from pkiviewer.view.theme import get_style, INDENT_PER_LEVEL
+from pkiviewer.view.theme import (
+    INDENT_PER_LEVEL,
+    Visibility,
+    get_key_style,
+    get_key_value_styles,
+    get_style,
+    get_value_style,
+)
 from pkiviewer.view.visibility import (
     Visibility,
     get_element_visibility,
-    get_extension_visibility,
     get_extension_value_visibility,
+    get_extension_visibility,
 )
-from pkiviewer.types import ExtensionDisplayMethod
-from pkiviewer.context import _console  # type: ignore
 
 
 def serial_number_display(cert_info: CertificateInfo, indent: int = 0) -> None:

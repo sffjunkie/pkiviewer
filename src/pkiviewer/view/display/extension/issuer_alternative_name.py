@@ -1,9 +1,7 @@
 from typing import cast
 
-from pkiviewer.model.extension.issuer_alternative_name import (
-    IssuerAlternativeNameInfo,
-)
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.model.extension.issuer_alternative_name import IssuerAlternativeNameInfo
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import print_value_multiline
 from pkiviewer.view.theme import get_value_style
 from pkiviewer.view.visibility import Visibility

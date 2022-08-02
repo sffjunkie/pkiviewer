@@ -9,18 +9,20 @@ from cryptography.x509.base import Certificate
 from pkiviewer.config import config_load
 from pkiviewer.context import _config, _console  # type: ignore
 from pkiviewer.io import download_pem, load, load_p12
-from pkiviewer.model import X509Types
 from pkiviewer.model.certificate import certiticate_parse
 from pkiviewer.model.crl import certiticate_revocation_list_parse
-from pkiviewer.model.csr import certificate_signing_request_parse
+
+# from pkiviewer.model.csr import certificate_signing_request_parse
 from pkiviewer.model.p12 import p12_key_and_certificates_parse
+from pkiviewer.types import X509Types
 from pkiviewer.utils import maybe
 from pkiviewer.view import rich_init
 from pkiviewer.view.console import print_info
 from pkiviewer.view.display.certificate import certificate_display
 from pkiviewer.view.display.common import report_display
 from pkiviewer.view.display.crl import certificate_revocation_list_display
-from pkiviewer.view.display.csr import certificate_signing_request_display
+
+# from pkiviewer.view.display.csr import certificate_signing_request_display
 from pkiviewer.view.display.p12 import p12_display
 
 __version__ = "0.2.0"
@@ -109,20 +111,24 @@ def run(
             if isinstance(element, Certificate):
                 cert_info = certiticate_parse(element, fname)
                 certificate_display(cert_info)
-                certificate_report_display(cert_info)
+                report_display(cert_info)
 
             # TODO: Certificate Signing Request
-            # elif isinstance(element, CertificateSigningRequest):
-            #     csr_info = certificate_signing_request_parse(element, fname)
-            #     certificate_signing_request_display(csr_info)
+            elif isinstance(element, CertificateSigningRequest):
+                # csr_info = certificate_signing_request_parse(element, fname)
+                # certificate_signing_request_display(csr_info)
+                # report_display(csr_info)
+                pass
 
             elif isinstance(element, CertificateRevocationList):  # type: ignore
                 crl_info = certiticate_revocation_list_parse(element, fname)
                 certificate_revocation_list_display(crl_info)
+                report_display(crl_info)
 
             elif isinstance(element, PKCS12KeyAndCertificates):  # type: ignore
                 p12_info = p12_key_and_certificates_parse(element, fname)
                 p12_display(p12_info)
+                report_display(p12_info)
 
     if record:
         clear = output_svg == ""

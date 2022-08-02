@@ -2,11 +2,10 @@ from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCert
 from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
 
 from pkiviewer.model.certificate import CertificateInfo, certiticate_parse
-from pkiviewer.model import X509Info
+from pkiviewer.types import X509Info
 
 
-class PKCS12KeyAndCertificateInfo(TypedDict):
-    filename: str
+class PKCS12KeyAndCertificateInfo(X509Info):
     name: str
     certificate: CertificateInfo | None
     private_key: PRIVATE_KEY_TYPES | None

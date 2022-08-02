@@ -1,7 +1,7 @@
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 
-from pkiviewer.model import PublicKeyInfo
+from pkiviewer.types import PublicKeyInfo
 
 
 class EllipticCurvePublicKeyInfo(PublicKeyInfo):

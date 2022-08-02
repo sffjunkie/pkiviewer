@@ -3,7 +3,7 @@ from typing import cast
 from cryptography.x509 import general_name
 from cryptography.x509.extensions import ExtensionType, IssuerAlternativeName
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 class IssuerAlternativeNameInfo(X509ExtensionTypeInfo):

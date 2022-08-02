@@ -1,13 +1,13 @@
 from typing import cast
 
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.subject_alternative_name import (
     SubjectAlternativeNameInfo,
 )
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import print_value_multiline
 from pkiviewer.view.theme import get_value_style
 from pkiviewer.view.visibility import Visibility
-from pkiviewer.context import _console  # type: ignore
 
 
 # RFC5280 4.2.1.6

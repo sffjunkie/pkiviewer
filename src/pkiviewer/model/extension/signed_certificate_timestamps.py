@@ -3,7 +3,7 @@ from typing import cast
 from cryptography.x509.certificate_transparency import SignedCertificateTimestamp
 from cryptography.x509.extensions import ExtensionType, SignedCertificateTimestamps
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 class SignedCertificateTimestampsInfo(X509ExtensionTypeInfo):

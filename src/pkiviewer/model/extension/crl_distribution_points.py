@@ -5,11 +5,11 @@ from cryptography.x509.extensions import CRLDistributionPoints, ExtensionType
 from pkiviewer.model import (
     DistributionPointInfo,
     GeneralNameInfo,
-    X509ExtensionTypeInfo,
     general_names_parse,
     relative_distinguished_names_parse,
 )
 from pkiviewer.model.extension.reasons import reasons_parse
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.13

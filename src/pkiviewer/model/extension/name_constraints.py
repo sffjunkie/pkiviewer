@@ -2,7 +2,8 @@ from typing import Any, cast
 
 from cryptography.x509.extensions import ExtensionType, NameConstraints
 
-from pkiviewer.model import X509ExtensionTypeInfo, general_names_parse
+from pkiviewer.model import general_names_parse
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.10

@@ -1,4 +1,4 @@
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.visibility import Visibility
 
 # NOTE: No information provided by the cryptography module for these extensions

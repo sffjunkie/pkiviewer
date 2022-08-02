@@ -1,6 +1,6 @@
 from cryptography.hazmat.primitives.asymmetric.dh import DHPublicKey
 
-from pkiviewer.model import PublicKeyInfo
+from pkiviewer.types import PublicKeyInfo
 
 
 class DHPublicKeyInfo(PublicKeyInfo):

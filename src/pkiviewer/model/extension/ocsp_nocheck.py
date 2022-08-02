@@ -2,7 +2,7 @@ from typing import cast
 
 from cryptography.x509.extensions import ExtensionType, OCSPNoCheck
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC2560 4.2.2.2.1

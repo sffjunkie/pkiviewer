@@ -17,7 +17,7 @@ from cryptography.x509 import (
 from cryptography.hazmat.primitives.serialization.pkcs12 import load_pkcs12
 from rich.prompt import Prompt
 from rich.text import Text
-from pkiviewer.model import X509Types
+from pkiviewer.types import X509Types
 from pkiviewer.context import _theme  # type: ignore
 
 

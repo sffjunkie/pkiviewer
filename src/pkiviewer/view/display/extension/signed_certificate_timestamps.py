@@ -2,26 +2,22 @@ from typing import cast
 
 from cryptography.x509.certificate_transparency import SignedCertificateTimestamp
 
-from pkiviewer.model.extension.signed_certificate_timestamps import (
-    SignedCertificateTimestampsInfo,
-)
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.precertificate_signed_certificate_timestamps import (
     PreCertificateSignedCertificateTimestampsInfo,
 )
-from pkiviewer.model import X509ExtensionInfo
-from pkiviewer.view.formatter import (
-    bytes_to_hex_long,
-    format_date_time,
-    format_version,
+from pkiviewer.model.extension.signed_certificate_timestamps import (
+    SignedCertificateTimestampsInfo,
 )
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import (
+    print_hex_multiline,
     print_key_oneline,
     print_key_value_oneline,
-    print_hex_multiline,
 )
-from pkiviewer.view.theme import get_value_style, get_key_style
+from pkiviewer.view.formatter import bytes_to_hex_long, format_date_time, format_version
+from pkiviewer.view.theme import get_key_style, get_value_style
 from pkiviewer.view.visibility import Visibility
-from pkiviewer.context import _console  # type: ignore
 
 
 def sct_display(

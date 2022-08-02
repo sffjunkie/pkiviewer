@@ -1,8 +1,8 @@
 from typing import TypedDict
 
-from cryptography.x509.extensions import ExtensionType
+from cryptography.x509.extensions import UnrecognizedExtension
 
-from pkiviewer.model import X509ExtensionTypeInfo
+from pkiviewer.types import X509ExtensionTypeInfo
 from pkiviewer.oid import Oid
 
 # NOTE: For the extensions in this module no information provided by the
@@ -16,7 +16,7 @@ class SubjectDirectoryAttributesInfo(X509ExtensionTypeInfo):
 
 
 def subject_directory_attributes_parse(
-    extension: ExtensionType,
+    extension: UnrecognizedExtension,
 ) -> SubjectDirectoryAttributesInfo:
     ...
 
@@ -26,7 +26,7 @@ class PolicyConstraintsInfo(X509ExtensionTypeInfo):
     ...
 
 
-def policy_constraints_parse(extension: ExtensionType) -> PolicyConstraintsInfo:
+def policy_constraints_parse(extension: UnrecognizedExtension) -> PolicyConstraintsInfo:
     ...
 
 
@@ -40,5 +40,5 @@ class PolicyMappingsInfo(X509ExtensionTypeInfo):
     policies: list[PolicyMapping]
 
 
-def policy_mappings_parse(extension: ExtensionType) -> PolicyMappingsInfo:
+def policy_mappings_parse(extension: UnrecognizedExtension) -> PolicyMappingsInfo:
     ...

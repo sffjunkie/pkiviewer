@@ -1,11 +1,9 @@
 from typing import cast
 
-from pkiviewer.model.extension.inhibit_any_policy import (
-    InhibitAnyPolicyInfo,
-)
-from pkiviewer.model import X509ExtensionInfo
+from pkiviewer.model.extension.inhibit_any_policy import InhibitAnyPolicyInfo
+from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import print_key_value_oneline
-from pkiviewer.view.theme import get_value_style, get_key_style
+from pkiviewer.view.theme import get_key_style, get_value_style
 from pkiviewer.view.visibility import Visibility
 
 
