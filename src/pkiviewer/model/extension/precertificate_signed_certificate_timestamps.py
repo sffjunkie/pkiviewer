@@ -2,8 +2,8 @@ from typing import cast
 
 from cryptography.x509.certificate_transparency import SignedCertificateTimestamp
 from cryptography.x509.extensions import (
-    PrecertificateSignedCertificateTimestamps,
     ExtensionType,
+    PrecertificateSignedCertificateTimestamps,
 )
 
 from pkiviewer.model import X509ExtensionTypeInfo

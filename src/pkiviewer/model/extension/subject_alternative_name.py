@@ -1,13 +1,14 @@
-from typing import Type
+from typing import Type, cast
 
+from cryptography.x509.extensions import ExtensionType, SubjectAlternativeName
 from cryptography.x509.general_name import (
     DNSName,
-    UniformResourceIdentifier,
     RFC822Name,
+    UniformResourceIdentifier,
 )
-from cryptography.x509.extensions import SubjectAlternativeName
 
 from pkiviewer.model import X509ExtensionTypeInfo
+
 
 # RFC5280 4.2.1.6
 class SubjectAlternativeNameInfo(X509ExtensionTypeInfo):
@@ -24,8 +25,9 @@ GeneralNameToShortName: dict[
 
 
 def subject_alternative_name_parse(
-    extension: SubjectAlternativeName,
+    extension: ExtensionType,
 ) -> SubjectAlternativeNameInfo:
+    extension = cast(SubjectAlternativeName, extension)
     sans: dict[str, list[str]] = {}
     for key, value in GeneralNameToShortName.items():
         san_list: list[str] = []

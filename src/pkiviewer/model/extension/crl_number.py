@@ -1,4 +1,6 @@
-from cryptography.x509.extensions import CRLNumber
+from typing import cast
+
+from cryptography.x509.extensions import CRLNumber, ExtensionType
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -9,8 +11,9 @@ class CRLNumberInfo(X509ExtensionTypeInfo):
 
 
 def crl_number_parse(
-    extension: CRLNumber,
+    extension: ExtensionType,
 ) -> CRLNumberInfo:
+    extension = cast(CRLNumber, extension)
     ext_info: CRLNumberInfo = {
         "type": "CRLNumber",
         "crl_number": extension.crl_number,

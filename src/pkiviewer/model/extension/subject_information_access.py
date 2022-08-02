@@ -1,9 +1,11 @@
-from cryptography.x509.extensions import SubjectInformationAccess
+from typing import cast
+
+from cryptography.x509.extensions import ExtensionType, SubjectInformationAccess
 
 from pkiviewer.model import (
+    AccessDescriptionInfo,
     X509ExtensionTypeInfo,
     access_description_info,
-    AccessDescriptionInfo,
 )
 
 
@@ -13,8 +15,9 @@ class SubjectInformationAccessInfo(X509ExtensionTypeInfo):
 
 
 def subject_information_access_parse(
-    extension: SubjectInformationAccess,
+    extension: ExtensionType,
 ) -> SubjectInformationAccessInfo:
+    extension = cast(SubjectInformationAccess, extension)
     access_descriptions: list[AccessDescriptionInfo] = []
     for description in extension._descriptions:  # type: ignore
         ad = access_description_info(description)

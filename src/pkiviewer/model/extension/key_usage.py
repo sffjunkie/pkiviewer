@@ -1,4 +1,6 @@
-from cryptography.x509.extensions import KeyUsage
+from typing import cast
+
+from cryptography.x509.extensions import ExtensionType, KeyUsage
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -8,7 +10,8 @@ class KeyUsageInfo(X509ExtensionTypeInfo):
     usage: list[str]
 
 
-def key_usage_parse(extension: KeyUsage) -> KeyUsageInfo:
+def key_usage_parse(extension: ExtensionType) -> KeyUsageInfo:
+    extension = cast(KeyUsage, extension)
     items: list[str] = []
     if extension.digital_signature:
         items.append("Digital Signature")

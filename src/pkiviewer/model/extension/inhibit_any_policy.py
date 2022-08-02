@@ -1,4 +1,6 @@
-from cryptography.x509.extensions import InhibitAnyPolicy
+from typing import cast
+
+from cryptography.x509.extensions import ExtensionType, InhibitAnyPolicy
 
 from pkiviewer.model import X509ExtensionTypeInfo
 
@@ -9,8 +11,9 @@ class InhibitAnyPolicyInfo(X509ExtensionTypeInfo):
 
 
 def inhibit_any_policy_parse(
-    extension: InhibitAnyPolicy,
+    extension: ExtensionType,
 ) -> InhibitAnyPolicyInfo:
+    extension = cast(InhibitAnyPolicy, extension)
     ext_info: InhibitAnyPolicyInfo = {
         "type": "InhibitAnyPolicyInfo",
         "skip_certs": extension.skip_certs,

@@ -1,13 +1,16 @@
-from cryptography.x509.extensions import FreshestCRL
+from typing import cast
+
+from cryptography.x509.extensions import ExtensionType, FreshestCRL
 
 from pkiviewer.model import (
-    X509ExtensionTypeInfo,
     DistributionPointInfo,
+    GeneralNameInfo,
+    X509ExtensionTypeInfo,
     general_names_parse,
     relative_distinguished_names_parse,
-    GeneralNameInfo,
 )
 from pkiviewer.model.extension.reasons import reasons_parse
+
 
 # RFC5280 4.2.1.14
 class FreshestCRLInfo(X509ExtensionTypeInfo):
@@ -15,8 +18,9 @@ class FreshestCRLInfo(X509ExtensionTypeInfo):
 
 
 def freshest_crl_parse(
-    extension: FreshestCRL,
+    extension: ExtensionType,
 ) -> FreshestCRLInfo:
+    extension = cast(FreshestCRL, extension)
     distribution_points: list[DistributionPointInfo] = []
     for dp in extension._distribution_points:  # type: ignore
         names: list[GeneralNameInfo] = []

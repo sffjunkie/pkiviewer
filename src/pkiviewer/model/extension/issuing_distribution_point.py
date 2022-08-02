@@ -1,4 +1,6 @@
-from cryptography.x509.extensions import IssuingDistributionPoint
+from typing import cast
+
+from cryptography.x509.extensions import ExtensionType, IssuingDistributionPoint
 
 from pkiviewer.model import X509ExtensionTypeInfo, general_names_parse
 from pkiviewer.model.extension.reasons import reasons_parse
@@ -15,9 +17,9 @@ class IssuingDistributionPointInfo(X509ExtensionTypeInfo):
 
 
 def issuing_distribution_point_parse(
-    extension: IssuingDistributionPoint,
+    extension: ExtensionType,
 ) -> IssuingDistributionPointInfo:
-
+    extension = cast(IssuingDistributionPoint, extension)
     full_name = general_names_parse(extension.full_name)
     reasons = reasons_parse(extension.only_some_reasons)
 

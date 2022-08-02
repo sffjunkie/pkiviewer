@@ -1,13 +1,15 @@
-from cryptography.x509.extensions import CRLDistributionPoints
+from typing import cast
+
+from cryptography.x509.extensions import CRLDistributionPoints, ExtensionType
 
 from pkiviewer.model import (
+    DistributionPointInfo,
+    GeneralNameInfo,
     X509ExtensionTypeInfo,
     general_names_parse,
     relative_distinguished_names_parse,
-    GeneralNameInfo,
 )
 from pkiviewer.model.extension.reasons import reasons_parse
-from pkiviewer.model import DistributionPointInfo
 
 
 # RFC5280 4.2.1.13
@@ -16,8 +18,9 @@ class CRLDistributionPointsInfo(X509ExtensionTypeInfo):
 
 
 def crl_distribution_points_parse(
-    extension: CRLDistributionPoints,
+    extension: ExtensionType,
 ) -> CRLDistributionPointsInfo:
+    extension = cast(CRLDistributionPoints, extension)
     distribution_points: list[DistributionPointInfo] = []
 
     for dp in extension._distribution_points:  # type: ignore

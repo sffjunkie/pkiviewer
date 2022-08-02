@@ -1,7 +1,7 @@
-from typing import TypedDict
+from typing import TypedDict, cast
 
 from cryptography.x509 import UserNotice
-from cryptography.x509.extensions import CertificatePolicies
+from cryptography.x509.extensions import CertificatePolicies, ExtensionType
 
 from pkiviewer.model import X509ExtensionTypeInfo
 from pkiviewer.oid import Oid
@@ -19,8 +19,9 @@ class CertificatePoliciesInfo(X509ExtensionTypeInfo):
 
 
 def certificate_policies_parse(
-    extension: CertificatePolicies,
+    extension: ExtensionType,
 ) -> CertificatePoliciesInfo:
+    extension = cast(CertificatePolicies, extension)
     policies: list[PolicyInfo] = []
     for policy in extension._policies:  # type: ignore
         oid = policy.policy_identifier.dotted_string
