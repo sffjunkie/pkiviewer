@@ -1,16 +1,17 @@
 from typing import Any, TypedDict
+
+from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from cryptography.x509 import (
-    CertificateSigningRequest,
     Certificate,
     CertificateRevocationList,
+    CertificateSigningRequest,
 )
-from cryptography.x509.general_name import GeneralName
 from cryptography.x509.extensions import AccessDescription
+from cryptography.x509.general_name import GeneralName
 from cryptography.x509.name import RelativeDistinguishedName
-from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 
-from pkiviewer.oid import OidNames, Oid
-
+from pkiviewer.oid import Oid, OidNames
+from pkiviewer.types import Error, Warning
 
 GeneralNameInfo = tuple[str, Any]
 

@@ -1,9 +1,8 @@
-from typing import TypedDict
-
 from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
 
 from pkiviewer.model.certificate import CertificateInfo, certiticate_parse
+from pkiviewer.model import X509Info
 
 
 class PKCS12KeyAndCertificateInfo(TypedDict):

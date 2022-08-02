@@ -1,21 +1,18 @@
 import datetime
-from zoneinfo import ZoneInfo
 from typing import TypedDict
+from zoneinfo import ZoneInfo
 
-from cryptography.x509 import CertificateRevocationList
-from cryptography.hazmat.primitives import hashes
-
-import cryptography.x509.name
 import cryptography.exceptions
-from asn1tools.codecs import generalized_time_to_datetime  # type: ignore
-
-from pkiviewer.model import X509ExtensionInfo
-from pkiviewer.types import Warning, Error
-from pkiviewer.oid import Oid, OidNames
-from pkiviewer.model.extension import v3_extension_parse
-from pkiviewer.context import _console  # type: ignore
+import cryptography.x509.name
+from cryptography.hazmat.primitives import hashes
+from cryptography.x509 import CertificateRevocationList
 
 from pkiviewer.asn1 import decode_tbs_certlist
+from pkiviewer.context import _console  # type: ignore
+from pkiviewer.model import X509ExtensionInfo, X509Info
+from pkiviewer.model.extension import v3_extension_parse
+from pkiviewer.oid import Oid, OidNames
+from pkiviewer.types import Error, Warning
 
 CertificateID = int
 

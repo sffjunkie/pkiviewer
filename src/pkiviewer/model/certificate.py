@@ -1,21 +1,19 @@
 import datetime
-from typing import TypedDict
 
-import cryptography.x509.name
 import cryptography.exceptions
-
+import cryptography.x509.name
 from cryptography.hazmat.primitives.hashes import SHA256
 from cryptography.x509 import Version
 from cryptography.x509.base import Certificate
 
-from pkiviewer.types import Warning, Error
-from pkiviewer.model import PublicKeyInfo, X509ExtensionInfo
-from pkiviewer.model.public_key import public_key_info
-from pkiviewer.model.common import sort_extensions_by_rfc_section, get_extension_for_oid
+from pkiviewer.context import _config, _console  # type: ignore
+from pkiviewer.model import PublicKeyInfo, X509ExtensionInfo, X509Info
+from pkiviewer.model.common import get_extension_for_oid, sort_extensions_by_rfc_section
 from pkiviewer.model.extension import v3_extension_parse
+from pkiviewer.model.public_key import public_key_info
 from pkiviewer.oid import Oid, OidNames
+from pkiviewer.types import Error, Warning
 from pkiviewer.view.console import print_info
-from pkiviewer.context import _console, _config  # type: ignore
 
 
 def verbose() -> bool:

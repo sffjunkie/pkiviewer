@@ -1,44 +1,44 @@
 from cryptography.x509.oid import ExtensionOID
 
+from pkiviewer.model.extension.authority_information_access import (
+    authority_information_access_parse,
+)
 from pkiviewer.model.extension.authority_key_identifier import (
     authority_key_identifier_parse,
 )
-from pkiviewer.model.extension.subject_key_identifier import (
-    subject_key_identifier_parse,
-)
-from pkiviewer.model.extension.certificate_policy import certificate_policies_parse
-from pkiviewer.model.extension.key_usage import key_usage_parse
-from pkiviewer.model.extension.subject_alternative_name import (
-    subject_alternative_name_parse,
-)
-from pkiviewer.model.extension.issuer_alternative_name import (
-    issuer_alternative_name_parse,
-)
 from pkiviewer.model.extension.basic_constraints import basic_constraints_parse
-from pkiviewer.model.extension.name_constraints import name_constraints_parse
-from pkiviewer.model.extension.extended_key_usage import extended_key_usage_parse
+from pkiviewer.model.extension.certificate_policy import certificate_policies_parse
 from pkiviewer.model.extension.crl_distribution_points import (
     crl_distribution_points_parse,
 )
+from pkiviewer.model.extension.crl_number import crl_number_parse
+from pkiviewer.model.extension.delta_crl_indicator import delta_crl_indicator_parse
+from pkiviewer.model.extension.extended_key_usage import extended_key_usage_parse
+from pkiviewer.model.extension.freshest_crl import freshest_crl_parse
 from pkiviewer.model.extension.inhibit_any_policy import inhibit_any_policy_parse
-from pkiviewer.model.extension.subject_information_access import (
-    subject_information_access_parse,
+from pkiviewer.model.extension.issuer_alternative_name import (
+    issuer_alternative_name_parse,
 )
-from pkiviewer.model.extension.authority_information_access import (
-    authority_information_access_parse,
+from pkiviewer.model.extension.issuing_distribution_point import (
+    issuing_distribution_point_parse,
+)
+from pkiviewer.model.extension.key_usage import key_usage_parse
+from pkiviewer.model.extension.name_constraints import name_constraints_parse
+from pkiviewer.model.extension.precertificate_signed_certificate_timestamps import (
+    precertificate_signed_certificate_timestamps_parse,
 )
 from pkiviewer.model.extension.signed_certificate_timestamps import (
     signed_certificate_timestamps_parse,
 )
-from pkiviewer.model.extension.precertificate_signed_certificate_timestamps import (
-    precertificate_signed_certificate_timestamps_parse,
+from pkiviewer.model.extension.subject_alternative_name import (
+    subject_alternative_name_parse,
 )
-from pkiviewer.model.extension.crl_number import crl_number_parse
-from pkiviewer.model.extension.issuing_distribution_point import (
-    issuing_distribution_point_parse,
+from pkiviewer.model.extension.subject_information_access import (
+    subject_information_access_parse,
 )
-from pkiviewer.model.extension.delta_crl_indicator import delta_crl_indicator_parse
-from pkiviewer.model.extension.freshest_crl import freshest_crl_parse
+from pkiviewer.model.extension.subject_key_identifier import (
+    subject_key_identifier_parse,
+)
 
 v3_extension_parse = {
     # Certificate

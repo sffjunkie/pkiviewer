@@ -1,9 +1,9 @@
-from typing import cast, Any
+from typing import Any, cast
 
 import tomli
 
 from pkiviewer.context import _config  # type: ignore
-from pkiviewer.types import Configuration, ConfigSection, Visibility
+from pkiviewer.types import ConfigSection, Configuration, Visibility
 
 default_theme: dict[str, str] = {
     "default": "white",

@@ -5,10 +5,10 @@ import rich.console
 import rich.style
 import rich.theme
 
-from pkiviewer.types import Warning, Error
-from pkiviewer.view.theme import indents, INDENT_PER_LEVEL, get_style
-from pkiviewer.view.formatter import int_to_hex_short, hex_string_split
 from pkiviewer.context import _console  # type: ignore
+from pkiviewer.types import Error, Warning
+from pkiviewer.view.formatter import hex_string_split, int_to_hex_short
+from pkiviewer.view.theme import INDENT_PER_LEVEL, get_style, indents
 
 MAX_STRIDE = 24
 

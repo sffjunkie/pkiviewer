@@ -2,35 +2,28 @@ import os
 from pathlib import Path
 
 import click
+from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
+from cryptography.x509 import CertificateRevocationList, CertificateSigningRequest
+from cryptography.x509.base import Certificate
 
 from pkiviewer.config import config_load
-from pkiviewer.io import load, download_pem, load_p12
+from pkiviewer.context import _config, _console  # type: ignore
+from pkiviewer.io import download_pem, load, load_p12
 from pkiviewer.model import X509Types
+from pkiviewer.model.certificate import certiticate_parse
+from pkiviewer.model.crl import certiticate_revocation_list_parse
+from pkiviewer.model.csr import certificate_signing_request_parse
+from pkiviewer.model.p12 import p12_key_and_certificates_parse
+from pkiviewer.utils import maybe
 from pkiviewer.view import rich_init
 from pkiviewer.view.console import print_info
-from pkiviewer.utils import maybe
-from pkiviewer.context import _console, _config  # type: ignore
-
-from cryptography.x509.base import Certificate
-from pkiviewer.model.certificate import certiticate_parse
-from pkiviewer.view.display.certificate import (
-    certificate_display,
-    certificate_report_display,
-)
-
-# from cryptography.x509 import CertificateSigningRequest
-# from pkiviewer.model.csr import certificate_signing_request_parse
-# from pkiviewer.ui.rich.output.csr import certificate_signing_request_display
-
-from cryptography.x509 import CertificateRevocationList
-from pkiviewer.model.crl import certiticate_revocation_list_parse
+from pkiviewer.view.display.certificate import certificate_display
+from pkiviewer.view.display.common import report_display
 from pkiviewer.view.display.crl import certificate_revocation_list_display
-
-from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
-from pkiviewer.model.p12 import p12_key_and_certificates_parse
+from pkiviewer.view.display.csr import certificate_signing_request_display
 from pkiviewer.view.display.p12 import p12_display
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 __author__ = "Simon Kennedy <sffjunkie+code@gmail.com>"
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
