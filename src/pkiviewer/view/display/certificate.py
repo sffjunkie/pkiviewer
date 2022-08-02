@@ -343,8 +343,13 @@ def certificate_data_display(cert_info: CertificateInfo, indent: int = 0):
     extensions_display(cert_info, indent=indent + 1)
 
 
-def certificate_header_display(cert_info: CertificateInfo, indent: int = 0):
-    filename_visibility = get_element_visibility(".Header.Filename")
+def certificate_header_display(
+    cert_info: CertificateInfo, indent: int = 0, show_filename: bool = True
+):
+    if not show_filename:
+        filename_visibility = Visibility.HIDDEN
+    else:
+        filename_visibility = get_element_visibility(".Header.Filename")
     filename = cert_info.get("filename", None)
     if filename_visibility == Visibility.HIDDEN or filename is None:
         print_key_oneline("Certificate:", indent=indent)
@@ -355,10 +360,12 @@ def certificate_header_display(cert_info: CertificateInfo, indent: int = 0):
         )
 
 
-def certificate_display(cert_info: CertificateInfo, indent: int = 0) -> None:
+def certificate_display(
+    cert_info: CertificateInfo, indent: int = 0, show_filename: bool = True
+) -> None:
     visibility = get_element_visibility(".Header")
     if visibility != Visibility.HIDDEN:
-        certificate_header_display(cert_info, indent)
+        certificate_header_display(cert_info, indent, show_filename)
         indent = indent + 1
 
     visibility = get_element_visibility(".Data")
