@@ -368,19 +368,3 @@ def certificate_display(cert_info: CertificateInfo, indent: int = 0) -> None:
     visibility = get_element_visibility(".Signature")
     if visibility != Visibility.HIDDEN:
         certificate_signature_display(cert_info, indent=indent)
-
-
-def certificate_report_display(cert_info: CertificateInfo) -> None:
-    errors = cert_info.get("errors", [])
-    if errors:
-        key_style = get_style("error")
-        print_key_oneline("Errors:", key_style=key_style)
-        for error in errors:
-            print_error(cert_info["filename"], error, indent=1)  # type: ignore
-
-    warnings = cert_info.get("warnings", [])
-    if warnings:
-        key_style = get_style("warning")
-        print_key_oneline("Warnings:", key_style=key_style)
-        for warning in warnings:
-            print_warning(cert_info["filename"], warning, indent=1)  # type: ignore

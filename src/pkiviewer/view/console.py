@@ -22,8 +22,10 @@ def print_hex_oneline(
     value: int,
     indent: int = 0,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
-    c = _console.get()
+    if c is None:
+        c = _console.get()
     text = int_to_hex_short(value)
     c.print(f"{indents[indent]}[{value_style}]{text}[/]", emoji=False, highlight=False)
 
@@ -33,8 +35,10 @@ def print_hex_multiline(
     indent: int = 0,
     stride: int = -1,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
-    c = _console.get()
+    if c is None:
+        c = _console.get()
     width = c.width
 
     max_stride = (width - len(indents[indent])) // 3
@@ -54,8 +58,10 @@ def print_key_oneline(
     key: str,
     indent: int = 0,
     key_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
-    c = _console.get()
+    if c is None:
+        c = _console.get()
     if key_style is None:
         key_style = get_style("key")
     c.print(f"{indents[indent]}[{key_style}]{key}[/]", emoji=False, highlight=False)
@@ -65,8 +71,10 @@ def print_value_oneline(
     value: str,
     indent: int = 0,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
-    c = _console.get()
+    if c is None:
+        c = _console.get()
     if value_style is None:
         value_style = get_style("value")
     c.print(f"{indents[indent]}[{value_style}]{value}[/]", emoji=False, highlight=False)
@@ -76,11 +84,14 @@ def print_value_multiline(
     value: str,
     indent: int = 0,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
+    if c is None:
+        c = _console.get()
+
     if value_style is None:
         value_style = get_style("value")
 
-    c = _console.get()
     space_left = c.width - indent * INDENT_PER_LEVEL
     if space_left < len(value):
         text = textwrap.fill(
@@ -98,9 +109,12 @@ def print_multivalue_multiline(
     value: list[str],
     indent: int = 0,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
+    if c is None:
+        c = _console.get()
     for item in value:
-        print_value_multiline(item, indent=indent, value_style=value_style)
+        print_value_multiline(item, indent=indent, value_style=value_style, c=c)
 
 
 def print_key_value_oneline(
@@ -109,8 +123,10 @@ def print_key_value_oneline(
     indent: int = 0,
     key_style: rich.style.Style | None = None,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
-    c = _console.get()
+    if c is None:
+        c = _console.get()
     if key_style is None or value_style is None:
         if key_style is None:
             key_style = get_style("key")
@@ -130,19 +146,28 @@ def print_key_value_multiline(
     indent: int = 0,
     key_style: rich.style.Style | None = None,
     value_style: rich.style.Style | None = None,
+    c: rich.console.Console | None = None,
 ) -> None:
+    if c is None:
+        c = _console.get()
     if key_style is None or value_style is None:
         if key_style is None:
             key_style = get_style("key")
         if value_style is None:
             value_style = get_style("value")
 
-    print_key_oneline(key, indent, key_style)
-    print_value_multiline(value, indent + 1, value_style)
+    print_key_oneline(key, indent, key_style, c=c)
+    print_value_multiline(value, indent + 1, value_style, c=c)
 
 
-def print_error(filename: str, error: Error, indent: int = 0):
-    c = _console.get()
+def print_error(
+    filename: str,
+    error: Error,
+    indent: int = 0,
+    c: rich.console.Console | None = None,
+) -> None:
+    if c is None:
+        c = _console.get()
     c.print(f"{indents[indent]}[error]{filename}[/]", highlight=False)
 
     text = f"{error['module']}: {error['text']}"
@@ -155,13 +180,14 @@ def print_error(filename: str, error: Error, indent: int = 0):
     c.print(f"[error]{text}[/]", highlight=False)
 
 
-def print_warning_text(text: str):
-    c = _console.get()
-    c.print(f"[warning]{text}[/]", highlight=False)
-
-
-def print_warning(filename: str, warning: Warning, indent: int = 0):
-    c = _console.get()
+def print_warning(
+    filename: str,
+    warning: Warning,
+    indent: int = 0,
+    c: rich.console.Console | None = None,
+) -> None:
+    if c is None:
+        c = _console.get()
     c.print(f"{indents[indent]}[warning]{filename}[/]", highlight=False)
 
     text = f"{warning['module']}: {warning['text']}"
