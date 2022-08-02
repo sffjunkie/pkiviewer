@@ -1,11 +1,11 @@
 import datetime
 from typing import Generator
 
+import cryptography.x509.name
 from cryptography.x509 import Version as CertificateVersion
 from cryptography.x509.certificate_transparency import (
     Version as CertificateTransparencyVersion,
 )
-import cryptography.x509.name
 
 
 def _chunk(value: str, stride: int) -> Generator[str, None, None]:
