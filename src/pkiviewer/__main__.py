@@ -7,7 +7,7 @@ from cryptography.x509 import CertificateRevocationList, CertificateSigningReque
 from cryptography.x509.base import Certificate
 
 from pkiviewer.config import config_load
-from pkiviewer.context import _config, _console  # type: ignore
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.io import download_pem, load, load_p12
 from pkiviewer.model.certificate import certiticate_parse
 from pkiviewer.model.crl import certiticate_revocation_list_parse
