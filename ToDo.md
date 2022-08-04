@@ -1,10 +1,10 @@
 # To Do
 
-- [ ] Certificate Revocation List output
-- [ ] Certificate Revocation List parsing
+- [x] Certificate Revocation List output
+- [x] Certificate Revocation List parsing
 - [ ] Certificate Signing Request output
 - [ ] Certificate Signing Request parsing
-- [ ] errors to stderr
+- [x] errors to stderr
 - [ ] Private Keys
 - [x] p12 output
 - [ ] rich-cli integration
