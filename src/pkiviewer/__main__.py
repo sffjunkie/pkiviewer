@@ -75,7 +75,7 @@ def run(
         record = True
         rich_init(
             record=record,
-            file=open(os.devnull, "wt"),
+            file=open(os.devnull, "wt", encoding="utf-8"),
             color_system="truecolor",
             width=width,
         )
