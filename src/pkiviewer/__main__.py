@@ -94,13 +94,13 @@ def run(
         if verbose:
             print_info(f"Downloading certificate from {fname}")
     else:
-        p = Path(fname)
-        if p.suffix == ".p12":
-            info = load_p12(p)
+        x509_file_path = Path(fname)
+        if x509_file_path.suffix == ".p12":
+            info = load_p12(x509_file_path)
         else:
-            info = load(p.resolve())
+            info = load(x509_file_path.resolve())
         if verbose:
-            print_info(f"Loading RFC5280 data from {p.resolve()}")
+            print_info(f"Loading RFC5280 data from {x509_file_path.resolve()}")
 
     if info:
         element: X509Types | None
