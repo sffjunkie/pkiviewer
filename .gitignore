@@ -9,6 +9,7 @@ __pycache__
 out.txt
 pkiviewer.toml
 process_all.sh
+poetry.toml
 
 # Future features
 src/pkiviewer/model/csr.py
