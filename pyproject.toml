@@ -5,14 +5,16 @@ description = "PKI file viewer"
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
 license = "Apache-2.0"
 readme = "ReadMe.md"
+homepage = "https://github.com/sffjunkie/pkiviewer"
+repository = "https://github.com/sffjunkie/pkiviewer"
 
 packages = [
     { include = "pkiviewer", from = "src" },
     { include = "pkiviewer/py.typed", from = "src" },
 ]
-include = [
-    { path = "tests", format = "sdist" }
-]
+[tool.poetry.urls]
+"Issue Tracker" = "https://github.com/sffjunkie/pkiviewer/issues"
+
 [tool.poetry.group.dev.dependencies]
 flake8 = "^5.0.4"
 Flake8-pyproject = "^1.1.0.post0"
