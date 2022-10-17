@@ -59,7 +59,7 @@ def serial_number_display(cert_info: CertificateInfo, indent: int = 0) -> None:
         key_style, value_style = get_key_value_styles(visibility)
         serial_number = cert_info.get("serial_number", None)
         if serial_number is not None:
-            if serial_number < 2 ** 32:
+            if serial_number < 2**32:
                 print_key_value_oneline(
                     "Serial Number:",
                     int_to_hex_short(serial_number),
