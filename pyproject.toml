@@ -13,6 +13,10 @@ packages = [
 include = [
     { path = "tests", format = "sdist" }
 ]
+[tool.poetry.group.dev.dependencies]
+flake8 = "^5.0.4"
+Flake8-pyproject = "^1.1.0.post0"
+
 
 [project.urls]
 "Homepage" = "https://github.com/sffjunkie/pkiviewer"
@@ -47,6 +51,18 @@ format = "md"
 [tool.isort]
 profile = "black"
 lines_between_sections = 1
+
+[tool.flake8]
+max-line-length = 88
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    ".ipynb_checkpoints",
+    "poetry.lock",
+]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
