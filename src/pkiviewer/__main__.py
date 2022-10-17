@@ -83,8 +83,6 @@ def run(
         record = False
         rich_init(record=False)
 
-    con = _console.get()
-
     info: list[X509Types]
 
     fname = str(filename)
@@ -132,6 +130,7 @@ def run(
 
     if record:
         clear = output_svg == ""
+        con = _console.get()
         if output_svg:
             con.save_svg(output_svg, clear=clear)
         if output_html:
