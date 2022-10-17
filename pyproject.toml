@@ -34,9 +34,7 @@ typing-extensions = "^4.3.0"
 scriv = "^0.16.0"
 
 [tool.pytest.ini_options]
-pythonpath = [
-    "src"
-]
+pythonpath = ["src"]
 
 [tool.poetry.scripts]
 pkiviewer = 'pkiviewer.__main__:run'
@@ -70,6 +68,6 @@ module = [
     'cryptography.*',
     'asn1tools.*',
     'pkiviewer.asn1.json_encoder',
-    'pkiviewer.model.csr'
+    'pkiviewer.model.csr',
 ]
 ignore_errors = true
