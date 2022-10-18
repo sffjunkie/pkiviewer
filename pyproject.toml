@@ -16,6 +16,11 @@ packages = [
 "Issue Tracker" = "https://github.com/sffjunkie/pkiviewer/issues"
 
 [tool.poetry.group.dev.dependencies]
+pytest = "^7.1.2"
+tox = "^3.25.1"
+typing-extensions = "^4.3.0"
+scriv = "^0.16.0"
+pytest-html = "^3.1.1"
 flake8 = "^5.0.4"
 Flake8-pyproject = "^1.1.0.post0"
 
