@@ -59,6 +59,11 @@ exclude = [
     ".ipynb_checkpoints",
     "poetry.lock",
 ]
+per-file-ignores = [
+    "src/pkiviewer/oid/__init__.py:E501",
+    "src/pkiviewer/view/display/extension/__init__.py:E501",
+    "src/pkiviewer/model/extension/__init__.py:E501",
+]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
