@@ -2,33 +2,43 @@ from cryptography.x509.oid import ExtensionOID
 
 from pkiviewer.oid import Oid
 from pkiviewer.types import ExtensionDisplayMethod
-
-
 from pkiviewer.view.display.extension.authority_information_access import (
     authority_information_access_display,
 )
 from pkiviewer.view.display.extension.authority_key_identifier import (
     authority_key_identifier_display,
 )
-from pkiviewer.view.display.extension.basic_constraints import (
-    basic_constraints_display,
-)
+from pkiviewer.view.display.extension.basic_constraints import basic_constraints_display
 from pkiviewer.view.display.extension.certificate_policies import (
     certificate_policies_display,
 )
 from pkiviewer.view.display.extension.crl_distribution_ponts import (
     crl_distribution_points_display,
 )
+from pkiviewer.view.display.extension.crl_number import crl_number_display
 from pkiviewer.view.display.extension.extended_key_usage import (
     extended_key_usage_display,
+)
+from pkiviewer.view.display.extension.freshest_crl_display import freshest_crl_display
+from pkiviewer.view.display.extension.inhibit_any_policy import (
+    inhibit_any_policy_display,
 )
 from pkiviewer.view.display.extension.issuer_alternative_name import (
     issuer_alternative_name_display,
 )
+from pkiviewer.view.display.extension.issuing_distribution_point import (
+    issuing_distribution_point_display,
+)
 from pkiviewer.view.display.extension.key_usage import key_usage_display
+from pkiviewer.view.display.extension.name_constraints import name_constraints_display
+from pkiviewer.view.display.extension.not_implemented_by_cryptography import (
+    policy_constraints_display,
+    policy_mappings_display,
+    subject_directory_attributes_display,
+)
 from pkiviewer.view.display.extension.signed_certificate_timestamps import (
-    signed_certificate_timestamps_display,
     precertificate_signed_certificate_timestamps_display,
+    signed_certificate_timestamps_display,
 )
 from pkiviewer.view.display.extension.subject_alternative_name import (
     subject_alternative_name_display,
@@ -39,29 +49,6 @@ from pkiviewer.view.display.extension.subject_information_access import (
 from pkiviewer.view.display.extension.subject_key_identifier import (
     subject_key_identifier_display,
 )
-from pkiviewer.view.display.extension.not_implemented_by_cryptography import (
-    policy_mappings_display,
-)
-from pkiviewer.view.display.extension.not_implemented_by_cryptography import (
-    subject_directory_attributes_display,
-)
-from pkiviewer.view.display.extension.name_constraints import (
-    name_constraints_display,
-)
-from pkiviewer.view.display.extension.not_implemented_by_cryptography import (
-    policy_constraints_display,
-)
-from pkiviewer.view.display.extension.inhibit_any_policy import (
-    inhibit_any_policy_display,
-)
-from pkiviewer.view.display.extension.freshest_crl_display import (
-    freshest_crl_display,
-)
-from pkiviewer.view.display.extension.crl_number import crl_number_display
-from pkiviewer.view.display.extension.issuing_distribution_point import (
-    issuing_distribution_point_display,
-)
-
 
 v3_extension_display: dict[Oid, ExtensionDisplayMethod] = {
     # RFC5280

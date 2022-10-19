@@ -8,7 +8,6 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.x509 import CertificateRevocationList
 
 from pkiviewer.asn1 import decode_tbs_certlist
-from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension import v3_extension_parse
 from pkiviewer.oid import Oid, OidNames
 from pkiviewer.types import Error, Warning, X509ExtensionInfo, X509Info
@@ -70,8 +69,9 @@ def certiticate_revocation_list_parse(crl: CertificateRevocationList, filename: 
     errors: list[Error] = []
     warnings: list[Warning] = []
 
-    rl = decode_tbs_certlist.decode_crl(crl.tbs_certlist_bytes)  # type: ignore
-    revoked_certificates = revocation_info_parse(rl["revokedCertificates"])  # type: ignore
+    rl = decode_tbs_certlist.decode_crl(crl.tbs_certlist_bytes)
+    revoked_certificates = rl["revokedCertificates"]
+    revoked_certificates = revocation_info_parse(revoked_certificates)
 
     if crl.signature_hash_algorithm:
         fingerprint = crl.fingerprint(crl.signature_hash_algorithm)

@@ -1,12 +1,12 @@
 from pkiviewer.model.public_key.elliptic_curve import EllipticCurvePublicKeyInfo
-from pkiviewer.view.visibility import get_element_visibility, Visibility
 from pkiviewer.view.console import (
-    print_key_oneline,
     print_hex_multiline,
+    print_key_oneline,
     print_key_value_oneline,
 )
 from pkiviewer.view.formatter import bytes_to_hex_long
 from pkiviewer.view.theme import get_key_value_styles
+from pkiviewer.view.visibility import Visibility, get_element_visibility
 
 
 def print_ec_info(key_info: EllipticCurvePublicKeyInfo, indent: int = 0):

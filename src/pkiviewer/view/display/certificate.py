@@ -46,7 +46,6 @@ from pkiviewer.view.theme import (
     get_value_style,
 )
 from pkiviewer.view.visibility import (
-    Visibility,
     get_element_visibility,
     get_extension_value_visibility,
     get_extension_visibility,

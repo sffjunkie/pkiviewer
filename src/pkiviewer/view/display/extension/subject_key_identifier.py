@@ -1,6 +1,5 @@
 from typing import cast
 
-from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.subject_key_identifier import SubjectKeyIdentifierInfo
 from pkiviewer.types import X509ExtensionInfo
 from pkiviewer.view.console import print_value_oneline

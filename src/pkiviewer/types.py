@@ -1,13 +1,13 @@
 from enum import Enum, auto
-from typing import Any, TypedDict, Callable
+from typing import Any, Callable, TypedDict
 
-from cryptography.x509.extensions import ExtensionType
 from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from cryptography.x509 import (
     Certificate,
     CertificateRevocationList,
     CertificateSigningRequest,
 )
+from cryptography.x509.extensions import ExtensionType
 
 from pkiviewer.oid import Oid
 

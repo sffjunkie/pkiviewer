@@ -2,15 +2,14 @@
 
 from typing import NamedTuple
 
+from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurveOID
 from cryptography.x509.oid import (
     AuthorityInformationAccessOID,
     ExtendedKeyUsageOID,
     ExtensionOID,
-    SignatureAlgorithmOID,
     NameOID,
+    SignatureAlgorithmOID,
 )
-from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurveOID
-
 
 Oid = str
 OidName = str

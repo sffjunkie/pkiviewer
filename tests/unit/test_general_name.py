@@ -1,4 +1,5 @@
 from cryptography.x509 import DNSName, RFC822Name
+
 from pkiviewer.model import general_name_parse
 
 

@@ -1,4 +1,4 @@
-from pkiviewer.view.formatter import int_to_hex_long, bytes_to_hex_long, chunk
+from pkiviewer.view.formatter import bytes_to_hex_long, chunk, int_to_hex_long
 
 
 def test_int_to_hex_long():

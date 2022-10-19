@@ -10,7 +10,7 @@ from cryptography.x509.certificate_transparency import (
 
 def _chunk(value: str, stride: int) -> Generator[str, None, None]:
     for idx in range(0, len(value), stride):
-        yield value[idx : idx + stride]
+        yield value[idx : idx + stride]  # noqa: E203
 
 
 def chunk(value: str, stride: int) -> list[str]:

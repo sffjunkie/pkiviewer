@@ -22,7 +22,7 @@ aCxKkiRwqX7ZK0lL9Oh+hhaVqqdPnGxb+O3ZX/88FvKvWiicnftMx56lzv4H
 
 
 def test_bad_naming_constraints_no_error_when_loading():
-    _cert = load_pem_x509_certificate(bad_naming_constraints.encode("ascii"))
+    load_pem_x509_certificate(bad_naming_constraints.encode("ascii"))
 
 
 def test_bad_naming_constraints_error_when_accessing():

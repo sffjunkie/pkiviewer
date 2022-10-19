@@ -164,7 +164,7 @@ def has_key(key_path: str, config: Configuration):
         while elem := elems.pop():
             if not isinstance(section, dict) and len(elems) == 0:
                 return False
-            if not elem in section:
+            if elem not in section:
                 return False
 
             section: Any = section[elem]

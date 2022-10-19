@@ -1,5 +1,4 @@
 from pkiviewer.model.public_key.dh import DHPublicKeyInfo
-from pkiviewer.view.visibility import get_element_visibility, Visibility
 from pkiviewer.view.console import (
     print_hex_multiline,
     print_key_oneline,
@@ -7,6 +6,7 @@ from pkiviewer.view.console import (
 )
 from pkiviewer.view.formatter import int_to_hex_long
 from pkiviewer.view.theme import get_key_value_styles
+from pkiviewer.view.visibility import Visibility, get_element_visibility
 
 
 def print_dh_info(key_info: DHPublicKeyInfo, indent: int = 0):

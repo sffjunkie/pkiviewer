@@ -2,7 +2,6 @@ from typing import cast
 
 from cryptography.x509.certificate_transparency import SignedCertificateTimestamp
 
-from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.precertificate_signed_certificate_timestamps import (
     PreCertificateSignedCertificateTimestampsInfo,
 )
@@ -29,14 +28,14 @@ def sct_display(
     value_indent = key_indent + 1
     print_key_oneline("Signed Certificate Timestamp:", key_indent, key_style=key_style)
     print_key_value_oneline(
-        f"Version:",
+        "Version:",
         format_version(sct.version),
         value_indent,
         key_style=key_style,
         value_style=value_style,
     )
     log_id = bytes_to_hex_long(sct.log_id)
-    print_key_oneline(f"Log ID:", value_indent, key_style=key_style)
+    print_key_oneline("Log ID:", value_indent, key_style=key_style)
     print_hex_multiline(
         log_id, indent=value_indent + 1, stride=16, value_style=value_style
     )

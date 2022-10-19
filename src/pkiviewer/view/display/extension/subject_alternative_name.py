@@ -1,6 +1,5 @@
 from typing import cast
 
-from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.subject_alternative_name import (
     SubjectAlternativeNameInfo,
 )

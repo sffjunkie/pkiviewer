@@ -1,5 +1,6 @@
 import pytest
-from pkiviewer.config import merge, MergeError
+
+from pkiviewer.config import MergeError, merge
 
 
 def test_MergeEmptyConfigWithNonEmptyShouldPass():
@@ -35,7 +36,7 @@ def test_MergeValueWithListShouldFail():
     b = {"b": [1, 2, 3]}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)
 
 
 def test_MergeValueWithDictShouldFail():
@@ -43,7 +44,7 @@ def test_MergeValueWithDictShouldFail():
     b = {"b": {"c": 1}}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)
 
 
 def test_MergeListWithValueShouldPass():
@@ -67,7 +68,7 @@ def test_MergeListWithDictShouldFail():
     b = {"b": {"c": 1}}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)
 
 
 def test_MergeDictWithValueShouldFail():
@@ -75,7 +76,7 @@ def test_MergeDictWithValueShouldFail():
     b = {"b": 1}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)
 
 
 def test_MergeDictWithListShouldFail():
@@ -83,7 +84,7 @@ def test_MergeDictWithListShouldFail():
     b = {"b": [1, 2, 3]}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)
 
 
 def test_MergeDictWithDictSameTypesShouldPass():
@@ -105,4 +106,4 @@ def test_MergeDictWithDictDifferentTypesShouldFail():
     b = {"b": {"c": [1, 2, 3]}}
 
     with pytest.raises(MergeError):
-        _c = merge(a, b)
+        merge(a, b)

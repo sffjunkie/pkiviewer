@@ -1,9 +1,10 @@
-import os
 import io
+import os
 import ssl
 from pathlib import Path
 from urllib.parse import urlparse
-from cryptography.x509.base import Certificate
+
+from cryptography.hazmat.primitives.serialization.pkcs12 import load_pkcs12
 from cryptography.x509 import (
     CertificateRevocationList,
     CertificateSigningRequest,
@@ -14,11 +15,12 @@ from cryptography.x509 import (
     load_pem_x509_crl,
     load_pem_x509_csr,
 )
-from cryptography.hazmat.primitives.serialization.pkcs12 import load_pkcs12
+from cryptography.x509.base import Certificate
 from rich.prompt import Prompt
 from rich.text import Text
-from pkiviewer.types import X509Types
+
 from pkiviewer.context import _theme  # type: ignore
+from pkiviewer.types import X509Types
 
 
 def download_pem(uri: str) -> list[X509Types]:

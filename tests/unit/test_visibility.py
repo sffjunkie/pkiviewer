@@ -2,9 +2,9 @@ from pkiviewer.config import Configuration
 from pkiviewer.view.visibility import (
     Visibility,
     get_element_visibility,
-    set_element_visibility,
-    get_extension_visibility,
     get_extension_value_visibility,
+    get_extension_visibility,
+    set_element_visibility,
 )
 
 

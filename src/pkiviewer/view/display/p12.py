@@ -1,10 +1,8 @@
 from pkiviewer.model.p12 import PKCS12KeyAndCertificateInfo
-
-from pkiviewer.view.theme import Visibility
 from pkiviewer.view.console import print_key_oneline, print_key_value_oneline
 from pkiviewer.view.display.certificate import certificate_display
-from pkiviewer.view.visibility import get_element_visibility, Visibility
 from pkiviewer.view.theme import get_style
+from pkiviewer.view.visibility import Visibility, get_element_visibility
 
 
 def p12_display(

@@ -1,12 +1,6 @@
+from pkiviewer.context import _console  # type: ignore; type: ignore
 from pkiviewer.model.crl import CertificateRevocationListInfo
-from pkiviewer.context import _console, _theme  # type: ignore
-
-from pkiviewer.view.theme import (
-    get_key_style,
-    get_value_style,
-    Visibility,
-    get_key_value_styles,
-)
+from pkiviewer.oid import OidNames
 from pkiviewer.view.console import (
     print_hex_multiline,
     print_key_oneline,
@@ -14,15 +8,15 @@ from pkiviewer.view.console import (
     print_key_value_oneline,
 )
 from pkiviewer.view.display import extension
-from pkiviewer.view.formatter import (
-    bytes_to_hex_long,
-    format_date_time,
-    format_name,
+from pkiviewer.view.formatter import bytes_to_hex_long, format_date_time, format_name
+from pkiviewer.view.theme import (
+    INDENT_PER_LEVEL,
+    Visibility,
+    get_key_style,
+    get_key_value_styles,
+    get_value_style,
 )
-from pkiviewer.oid import OidNames
-from pkiviewer.view.theme import INDENT_PER_LEVEL
-from pkiviewer.view.visibility import get_element_visibility, Visibility
-from pkiviewer.context import _console  # type: ignore
+from pkiviewer.view.visibility import get_element_visibility
 
 
 def issuer_display(crl_info: CertificateRevocationListInfo, indent: int = 0) -> None:

@@ -2,8 +2,8 @@ from typing import TypedDict
 
 from cryptography.x509.extensions import UnrecognizedExtension
 
-from pkiviewer.types import X509ExtensionTypeInfo
 from pkiviewer.oid import Oid
+from pkiviewer.types import X509ExtensionTypeInfo
 
 # NOTE: For the extensions in this module no information provided by the
 # cryptography module

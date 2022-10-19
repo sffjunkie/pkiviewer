@@ -1,6 +1,6 @@
 import pytest
 
-from pkiviewer.config import config_load, Configuration
+from pkiviewer.config import Configuration, config_load
 from pkiviewer.context import _config  # type: ignore
 
 

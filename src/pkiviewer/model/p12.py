@@ -1,5 +1,5 @@
-from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
+from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 
 from pkiviewer.model.certificate import CertificateInfo, certiticate_parse
 from pkiviewer.types import X509Info

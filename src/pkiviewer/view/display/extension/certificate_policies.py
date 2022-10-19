@@ -1,6 +1,5 @@
 from typing import cast
 
-from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.extension.certificate_policy import CertificatePoliciesInfo
 from pkiviewer.oid import OidNames
 from pkiviewer.types import X509ExtensionInfo

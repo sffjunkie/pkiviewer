@@ -85,7 +85,7 @@ def certiticate_parse(cert: Certificate, filename: str):
                         }
 
                         extensions[oid] = extension_info
-                except KeyError as exc:
+                except KeyError:
                     if oid in OidNames:
                         name = f"{OidNames[oid].name} (OID:{oid})"
                     else:

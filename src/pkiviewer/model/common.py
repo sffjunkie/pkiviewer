@@ -1,9 +1,9 @@
 from typing import Any
 
-from cryptography.x509.extensions import Extensions, ExtensionType, Extension
+from cryptography.x509.extensions import Extension, Extensions, ExtensionType
 
-from pkiviewer.oid import Oid, OidNames
 from pkiviewer.model.extension import v3_extension_parse
+from pkiviewer.oid import Oid, OidNames
 
 
 def get_extension_for_oid(

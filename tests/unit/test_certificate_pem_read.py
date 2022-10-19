@@ -1,12 +1,12 @@
 from pathlib import Path
-from cryptography.x509.base import Certificate
 
 import pytest
+from cryptography.x509.base import Certificate
 
-from pkiviewer.view import rich_init
 from pkiviewer.config import config_load
 from pkiviewer.io import load
 from pkiviewer.model.certificate import certiticate_parse
+from pkiviewer.view import rich_init
 
 
 @pytest.mark.parametrize(
@@ -22,4 +22,4 @@ def test_certificate_parsing(cert_file: str):
     fullpath = fullpath.resolve()
     certificates = load(fullpath)
     if isinstance(certificates[0], Certificate):
-        _info = certiticate_parse(certificates[0], fullpath.name)
+        certiticate_parse(certificates[0], fullpath.name)

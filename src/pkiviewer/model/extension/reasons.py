@@ -1,6 +1,5 @@
 from cryptography.x509 import ReasonFlags
 
-
 Reasons: dict[ReasonFlags, str] = {
     ReasonFlags.aa_compromise: "Attribute Authority compromised",
     ReasonFlags.affiliation_changed: "Subject's name or other information has changed",
@@ -8,7 +7,9 @@ Reasons: dict[ReasonFlags, str] = {
     ReasonFlags.certificate_hold: "Certificate on hold",
     ReasonFlags.cessation_of_operation: "Certificate no longer required",
     ReasonFlags.key_compromise: "Private key was compromised",
-    ReasonFlags.privilege_withdrawn: "Privilege granted by this certificate have been withdrawn",
+    ReasonFlags.privilege_withdrawn: (
+        "Privilege granted by this certificate have been withdrawn"
+    ),
     ReasonFlags.remove_from_crl: "Certificate should be removed from the CRL",
     ReasonFlags.superseded: "Certificate superseded",
     ReasonFlags.unspecified: "Unspecified",
