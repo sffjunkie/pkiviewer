@@ -12,6 +12,8 @@ packages = [
     { include = "pkiviewer", from = "src" },
     { include = "pkiviewer/py.typed", from = "src" },
 ]
+include = [{ path = "tests", format = "sdist" }]
+
 [tool.poetry.urls]
 "Issue Tracker" = "https://github.com/sffjunkie/pkiviewer/issues"
 
