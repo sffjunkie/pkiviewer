@@ -401,6 +401,9 @@ OidNames: OidDatabase = {
         "Google Trust Services Certificate Policy",
         "https://pki.goog/GTS-CP-1.3.pdf",
     ),
+    "1.3.6.1.4.1.44947.1.1.1": OidInfo(
+        "ISRG Domain Validated", "https://letsencrypt.org/documents/isrg-cps-v2.2/"
+    ),
 }
 
 
