@@ -30,7 +30,7 @@ def sort_extensions_by_rfc_section(extensions: Extensions) -> list[SortedExtensi
 
     a = [
         (
-            OidNames[ext.oid.dotted_string].defined_in,
+            OidNames[ext.oid.dotted_string].info,
             v3_extension_parse[ext.oid.dotted_string],
             ext.oid.dotted_string,
         )
