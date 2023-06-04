@@ -11,7 +11,7 @@ from pkiviewer.model.public_key.ed448 import Ed448PublicKeyInfo
 from pkiviewer.model.public_key.ed25519 import Ed25519PublicKeyInfo
 from pkiviewer.model.public_key.elliptic_curve import EllipticCurvePublicKeyInfo
 from pkiviewer.model.public_key.rsa import RSAPublicKeyInfo
-from pkiviewer.oid import OidNames
+from pkiviewer.oid.names import OidNames
 from pkiviewer.types import ExtensionDisplayMethod, Warning, X509ExtensionInfo
 from pkiviewer.view.console import (
     print_hex_multiline,

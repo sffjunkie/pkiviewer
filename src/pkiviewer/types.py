@@ -9,7 +9,7 @@ from cryptography.x509 import (
 )
 from cryptography.x509.extensions import ExtensionType
 
-from pkiviewer.oid import Oid
+from pkiviewer.oid.names import Oid
 
 
 class Visibility(Enum):

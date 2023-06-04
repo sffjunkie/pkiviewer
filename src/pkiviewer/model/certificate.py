@@ -10,7 +10,7 @@ from pkiviewer.context import _config, _console  # type: ignore
 from pkiviewer.model.common import get_extension_for_oid, sort_extensions_by_rfc_section
 from pkiviewer.model.extension import v3_extension_parse
 from pkiviewer.model.public_key import public_key_info
-from pkiviewer.oid import Oid, OidNames
+from pkiviewer.oid.names import Oid, OidNames
 from pkiviewer.types import Error, PublicKeyInfo, Warning, X509ExtensionInfo, X509Info
 from pkiviewer.view.console import print_info
 

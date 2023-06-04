@@ -3,7 +3,7 @@ from typing import TypedDict, cast
 from cryptography.x509 import UserNotice
 from cryptography.x509.extensions import CertificatePolicies, ExtensionType
 
-from pkiviewer.oid import Oid
+from pkiviewer.oid.names import Oid
 from pkiviewer.types import X509ExtensionTypeInfo
 
 

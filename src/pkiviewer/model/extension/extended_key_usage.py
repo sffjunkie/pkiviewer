@@ -2,7 +2,7 @@ from typing import cast
 
 from cryptography.x509.extensions import ExtendedKeyUsage, ExtensionType
 
-from pkiviewer.oid import OidNames
+from pkiviewer.oid.names import OidNames
 from pkiviewer.types import X509ExtensionTypeInfo
 
 

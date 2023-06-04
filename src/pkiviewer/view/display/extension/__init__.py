@@ -1,6 +1,6 @@
 from cryptography.x509.oid import ExtensionOID
 
-from pkiviewer.oid import Oid
+from pkiviewer.oid.names import Oid
 from pkiviewer.types import ExtensionDisplayMethod
 from pkiviewer.view.display.extension.authority_information_access import (
     authority_information_access_display,

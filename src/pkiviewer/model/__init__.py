@@ -4,7 +4,7 @@ from cryptography.x509.extensions import AccessDescription
 from cryptography.x509.general_name import GeneralName
 from cryptography.x509.name import RelativeDistinguishedName
 
-from pkiviewer.oid import OidNames
+from pkiviewer.oid.names import OidNames
 
 GeneralNameInfo = tuple[str, Any]
 

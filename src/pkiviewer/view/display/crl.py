@@ -1,6 +1,6 @@
 from pkiviewer.context import _console  # type: ignore; type: ignore
 from pkiviewer.model.crl import CertificateRevocationListInfo
-from pkiviewer.oid import OidNames
+from pkiviewer.oid.names import OidNames
 from pkiviewer.view.console import (
     print_hex_multiline,
     print_key_oneline,
