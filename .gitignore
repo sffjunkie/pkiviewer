@@ -10,6 +10,8 @@ out.txt
 pkiviewer.toml
 process_all.sh
 poetry.toml
+.pdm-build
+.pdm-python
 
 # Future features
 src/pkiviewer/model/csr.py
