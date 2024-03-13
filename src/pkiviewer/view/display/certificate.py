@@ -91,7 +91,7 @@ def validity_display(cert_info: CertificateInfo, indent: int = 0) -> None:
                 key_style, value_style = get_key_value_styles(before_visibility)
             vbdt = cert_info.get("not_valid_before", None)
             if vbdt:
-                if datetime.datetime.now() < vbdt:
+                if datetime.datetime.now(datetime.timezone.utc) < vbdt:
                     key_style = value_style = get_style("warning")
                 print_key_value_oneline(
                     "Not Before:",
@@ -106,7 +106,7 @@ def validity_display(cert_info: CertificateInfo, indent: int = 0) -> None:
                 key_style, value_style = get_key_value_styles(after_visibility)
             vadt = cert_info.get("not_valid_after", None)
             if vadt:
-                if datetime.datetime.now() > vadt:
+                if datetime.datetime.now(datetime.timezone.utc) > vadt:
                     key_style = value_style = get_style("warning")
                 print_key_value_oneline(
                     "Not After: ",
