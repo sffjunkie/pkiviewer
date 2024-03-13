@@ -1,4 +1,4 @@
-from cryptography.hazmat.primitives.asymmetric.types import PRIVATE_KEY_TYPES
+from cryptography.hazmat.primitives.asymmetric.types import  PrivateKeyTypes
 from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 
 from pkiviewer.model.certificate import CertificateInfo, certiticate_parse
@@ -8,7 +8,7 @@ from pkiviewer.types import X509Info
 class PKCS12KeyAndCertificateInfo(X509Info):
     name: str
     certificate: CertificateInfo | None
-    private_key: PRIVATE_KEY_TYPES | None
+    private_key:  PrivateKeyTypes | None
     additional_certs: list[CertificateInfo]
 
 
