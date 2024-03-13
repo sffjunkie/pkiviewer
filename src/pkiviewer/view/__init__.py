@@ -4,7 +4,7 @@ import rich.theme
 from pkiviewer.context import _config, _console, _err_console, _theme  # type: ignore
 
 
-def rich_init(**kwargs: object):
+def rich_init(**kwargs):
     config = _config.get()
 
     theme = rich.theme.Theme(config["theme"])

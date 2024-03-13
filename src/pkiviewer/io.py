@@ -112,10 +112,9 @@ def load_binary(
         return [load_crl_der(data)]
     elif ext == ".p12":
         if password is not None:
-            passwd = password.encode("ascii")
+            return [load_pkcs12(data, password.encode("ascii"))]
         else:
-            passwd = password
-        return [load_pkcs12(data, passwd)]
+            return [load_pkcs12(data, None)]
     else:
         return []
 

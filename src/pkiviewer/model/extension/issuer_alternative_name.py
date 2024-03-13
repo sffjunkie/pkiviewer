@@ -1,6 +1,6 @@
 from typing import cast
 
-from cryptography.x509 import general_name
+from cryptography import x509
 from cryptography.x509.extensions import ExtensionType, IssuerAlternativeName
 
 from pkiviewer.types import X509ExtensionTypeInfo
@@ -16,16 +16,16 @@ def issuer_alternative_name_parse(
 ) -> IssuerAlternativeNameInfo:
     extension = cast(IssuerAlternativeName, extension)
     names = {
-        general_name.DNSName: "DNS",
-        general_name.RFC822Name: "email",
-        general_name.UniformResourceIdentifier: "URI",
-        general_name.IPAddress: "IP Address",
-        general_name.RegisteredID: "Registered ID",
+        x509.DNSName: "DNS",
+        x509.RFC822Name: "email",
+        x509.UniformResourceIdentifier: "URI",
+        x509.IPAddress: "IP Address",
+        x509.RegisteredID: "Registered ID",
     }
     ians: dict[str, list[str]] = {}
     for key, value in names.items():
         ian_list: list[str] = []
-        for address in extension.get_values_for_type(type(key)):
+        for address in extension.get_values_for_type(key):  # type: ignore
             ian_list.append(str(address))
         if ian_list:
             ians[value] = ian_list

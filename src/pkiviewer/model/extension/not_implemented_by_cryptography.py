@@ -11,23 +11,21 @@ from pkiviewer.types import X509ExtensionTypeInfo
 
 
 # RFC5280 4.2.1.8
-class SubjectDirectoryAttributesInfo(X509ExtensionTypeInfo):
-    ...
+class SubjectDirectoryAttributesInfo(X509ExtensionTypeInfo): ...
 
 
 def subject_directory_attributes_parse(
     extension: UnrecognizedExtension,
-) -> SubjectDirectoryAttributesInfo:
-    ...
+) -> SubjectDirectoryAttributesInfo | None: ...
 
 
 # RFC5280 4.2.1.11
-class PolicyConstraintsInfo(X509ExtensionTypeInfo):
-    ...
+class PolicyConstraintsInfo(X509ExtensionTypeInfo): ...
 
 
-def policy_constraints_parse(extension: UnrecognizedExtension) -> PolicyConstraintsInfo:
-    ...
+def policy_constraints_parse(
+    extension: UnrecognizedExtension,
+) -> PolicyConstraintsInfo | None: ...
 
 
 # RFC5280 4.2.1.5
@@ -40,5 +38,6 @@ class PolicyMappingsInfo(X509ExtensionTypeInfo):
     policies: list[PolicyMapping]
 
 
-def policy_mappings_parse(extension: UnrecognizedExtension) -> PolicyMappingsInfo:
-    ...
+def policy_mappings_parse(
+    extension: UnrecognizedExtension,
+) -> PolicyMappingsInfo | None: ...

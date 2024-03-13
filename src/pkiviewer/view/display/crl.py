@@ -1,4 +1,4 @@
-from pkiviewer.context import _console  # type: ignore; type: ignore
+from pkiviewer.context import _console  # type: ignore
 from pkiviewer.model.crl import CertificateRevocationListInfo
 from pkiviewer.oid.names import OidNames
 from pkiviewer.view.console import (
@@ -121,11 +121,12 @@ def signature_display(crl_info: CertificateRevocationListInfo, indent: int = 0) 
 
 def crl_display(crl_info: CertificateRevocationListInfo, indent: int = 0) -> None:
     print_key_oneline("Revocation List:", indent=indent)
-    for revocation in crl_info["revoked_certificates"]:
-        key = revocation["certificate_id"]
-        print_key_value_oneline("Certificate ID:", key, indent=indent + 1)
-        value = format_date_time(revocation["revocation_date"])
-        print_key_value_oneline("Revocation Date:", value, indent=indent + 1)
+    if (revoked_certs := crl_info["revoked_certificates"]) is not None:
+        for revocation in revoked_certs:
+            key = revocation["certificate_id"]
+            print_key_value_oneline("Certificate ID:", key, indent=indent + 1)
+            value = format_date_time(revocation["revocation_date"])
+            print_key_value_oneline("Revocation Date:", value, indent=indent + 1)
 
 
 def certificate_revocation_list_display(

@@ -14,4 +14,6 @@ def maybe(
             else:
                 data = data[elem]
     except IndexError:
-        return None
+        pass
+
+    return None

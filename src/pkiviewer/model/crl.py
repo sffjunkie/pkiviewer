@@ -40,8 +40,7 @@ class CertificateRevocationListInfo(X509Info):
     next_update: datetime.datetime | None
     fingerprint: bytes | None
     extensions: dict[Oid, X509ExtensionInfo]
-    revoked_certificates: list[RevocationInfo]
-    fingerprint: bytes | None
+    revoked_certificates: list[RevocationInfo] | None
 
 
 def revocation_date_parse(x509_dt: X509RevocationDate) -> datetime.datetime:
@@ -70,8 +69,11 @@ def certiticate_revocation_list_parse(crl: CertificateRevocationList, filename: 
     warnings: list[Warning] = []
 
     rl = decode_tbs_certlist.decode_crl(crl.tbs_certlist_bytes)
-    revoked_certificates = rl["revokedCertificates"]
-    revoked_certificates = revocation_info_parse(revoked_certificates)
+    if rl is not None:
+        revoked_certificates = rl["revokedCertificates"]
+        revoked_certificates = revocation_info_parse(revoked_certificates)
+    else:
+        revoked_certificates = None
 
     if crl.signature_hash_algorithm:
         fingerprint = crl.fingerprint(crl.signature_hash_algorithm)
