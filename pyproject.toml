@@ -22,8 +22,8 @@ Homepage = "https://github.com/sffjunkie/pkiviewer"
 Issues = "https://github.com/sffjunkie/pkiviewer/issues"
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["uv_build>=0.10.6,<0.11.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
