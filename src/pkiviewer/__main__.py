@@ -1,11 +1,13 @@
 import os
+from typing import Annotated
 from pathlib import Path
 
-import click
+import typer
 from cryptography.hazmat.primitives.serialization.pkcs12 import PKCS12KeyAndCertificates
 from cryptography.x509 import CertificateRevocationList, CertificateSigningRequest
 from cryptography.x509.base import Certificate
 
+from pkiviewer import __version__
 from pkiviewer.config import config_load
 from pkiviewer.context import _console  # type: ignore
 from pkiviewer.io import download_pem, load, load_p12
@@ -25,37 +27,37 @@ from pkiviewer.view.display.crl import certificate_revocation_list_display
 # from pkiviewer.view.display.csr import certificate_signing_request_display
 from pkiviewer.view.display.p12 import p12_display
 
-__version__ = "0.2.0"
-__author__ = "Simon Kennedy <sffjunkie+code@gmail.com>"
 
-CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+def _version_callback(value: bool) -> None:
+    if value:
+        print(f"pkiviewer {__version__}")
+        raise typer.Exit()
 
 
-@click.command(context_settings=CONTEXT_SETTINGS)
-@click.argument("filename", type=click.Path())
-@click.option(
-    "--save-html",
-    type=click.Path(),
-    help="Filename to save HTML to.",
-    metavar="HTMLFILE",
-)
-@click.option(
-    "--save-svg", type=click.Path(), help="Filename to save SVG to.", metavar="SVGFILE"
-)
-@click.option("-v", "--verbose", is_flag=True, help="Display more ouput")
-@click.option(
-    "--width",
-    default=100,
-    help="Number of columns to use when saving HTML/SVG",
-    show_default=True,
-)
-@click.version_option(__version__, "--version", "-V", prog_name="pkiviewer")
-def run(
-    filename: click.Path,
-    save_html: click.Path | None,
-    save_svg: click.Path | None,
-    verbose: bool,
-    width: int,
+def go(
+    filename: Annotated[
+        str,
+        typer.Argument(help="Filename or url to display"),
+    ],
+    save_html: Annotated[
+        Path | None,
+        typer.Option("--save-html", help="Filename to save HTML to."),
+    ] = None,
+    save_svg: Annotated[
+        Path | None,
+        typer.Option("--save-svg", help="Filename to save SVG to."),
+    ] = None,
+    verbose: Annotated[
+        bool,
+        typer.Option("-v", "--verbose", help="Display more verbose ouput"),
+    ] = False,
+    width: Annotated[
+        int,
+        typer.Option(help="Number of columns to use when saving HTML/SVG"),
+    ] = 100,
+    version: Annotated[
+        bool | None, typer.Option("--version", "-V", callback=_version_callback)
+    ] = None,
 ):
     cfg = config_load()
     cfg["output"]["verbose"] = verbose
@@ -137,4 +139,4 @@ def run(
             con.save_html(output_html)
 
 
-run()
+app = typer.run(go)
