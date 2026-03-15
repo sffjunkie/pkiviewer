@@ -15,7 +15,7 @@ readme = "ReadMe.md"
 license = { text = "Apache-2.0" }
 
 [project.scripts]
-pkiviewer = 'pkiviewer.__main__:run'
+pkiviewer = 'pkiviewer.__main__:app'
 
 [project.urls]
 Homepage = "https://github.com/sffjunkie/pkiviewer"
