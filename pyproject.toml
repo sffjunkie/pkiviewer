@@ -6,9 +6,10 @@ authors = [{ name = "Simon Kennedy", email = "sffjunkie+code@gmail.com" }]
 dependencies = [
     "cryptography>=42.0.5",
     "rich>=13.7.1",
-    "click>=8.1.7",
     "tomli>=2.0.1",
     "pyasn1-modules>=0.4.2",
+    "pyasn1>=0.6.2",
+    "typer>=0.24.1",
 ]
 requires-python = ">=3.11"
 readme = "ReadMe.md"
