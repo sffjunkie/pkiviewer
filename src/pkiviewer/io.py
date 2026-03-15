@@ -125,7 +125,7 @@ def load_ascii(fp: io.BufferedReader) -> list[X509Types]:
 
 
 def load(filename: Path, password: str | None = None) -> list[X509Types]:
-    with open(filename, mode="rb") as f:
+    with filename.open(mode="rb") as f:
         sig = f.read(4)
         f.seek(0, os.SEEK_SET)
         if sig == b"----":
