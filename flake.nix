@@ -4,8 +4,15 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    pyproject-nix.url = "github:nix-community/pyproject.nix";
-    pyproject-nix.inputs.nixpkgs.follows = "nixpkgs";
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pyproject-nix = {
+      url = "github:pyproject-nix/pyproject.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     uv2nix = {
       url = "github:pyproject-nix/uv2nix";
@@ -24,6 +31,7 @@
   outputs =
     {
       self,
+      git-hooks,
       nixpkgs,
       uv2nix,
       pyproject-nix,
@@ -33,72 +41,103 @@
     let
       inherit (nixpkgs) lib;
 
-      workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = ./.; };
+      forAllSystems = lib.genAttrs [
+        "x86_64-linux"
+      ];
+
+      pyproject = pyproject-nix.lib.project.loadPyproject {
+        projectRoot = ./.;
+      };
+      project_name = pyproject.pyproject.project.name;
+
+      workspace = uv2nix.lib.workspace.loadWorkspace {
+        workspaceRoot = ./.;
+      };
 
       overlay = workspace.mkPyprojectOverlay {
         sourcePreference = "wheel";
       };
 
-      forAllSystems = lib.genAttrs [
-        "x86_64-linux"
-      ];
-
-    in
-    {
-      packages = forAllSystems (
+      pythonSets = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
           python = pkgs.python3;
-
-          pythonBase = pkgs.callPackage pyproject-nix.build.packages {
-            inherit python;
-          };
-
-          pythonSet = pythonBase.overrideScope (
+        in
+        (pkgs.callPackage pyproject-nix.build.packages {
+          inherit python;
+        }).overrideScope
+          (
             lib.composeManyExtensions [
-              pyproject-build-systems.overlays.default
+              pyproject-build-systems.overlays.wheel
               overlay
             ]
-          );
-        in
-        {
-          default = pythonSet.mkVirtualEnv "pkiviewer-env" workspace.deps.default;
-        }
+          )
       );
+    in
+    {
+      packages = forAllSystems (system: {
+        default = pythonSets.${system}.mkVirtualEnv "${project_name}-env" workspace.deps.default;
+      });
 
       apps = forAllSystems (system: {
         default = {
           type = "app";
-          program = "${self.packages.${system}.default}/bin/pkiviewer";
+          program = "${self.packages.${system}.default}/bin/${project_name}";
           meta = {
-            description = "PKI viewer";
-            homepage = "https://github.com/sffjunkie/pkiviewer";
+            description = "View PKI";
+            homepage = "https://github.com/sffjunkie/${project_name}";
             license = lib.licenses.asl20;
           };
         };
       });
+
+      checks = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          pre-commit-check = git-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              ruff = {
+                enable = true;
+                package = pkgs.ruff;
+              };
+              end-of-file-fixer.enable = true;
+              trim-trailing-whitespace.enable = true;
+            };
+          };
+        }
+      );
 
       devShells = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
           python = pkgs.python3;
+          editableOverlay = workspace.mkEditablePyprojectOverlay { root = "$REPO_ROOT"; };
+          pythonSet = pythonSets.${system}.overrideScope editableOverlay;
+          virtualenv = pythonSet.mkVirtualEnv "${project_name}-env" workspace.deps.all;
         in
         {
 
           default = pkgs.mkShell {
             packages = [
-              python
-              pkgs.ruff
+              virtualenv
               pkgs.just
-              pkgs.pre-commit
               pkgs.uv
             ];
             env = {
+              NIX_DEVSHELL_PROJECT = project_name;
               UV_PYTHON_DOWNLOADS = "never";
               UV_PYTHON = python.interpreter;
             };
+            shellHook = ''
+              unset PYTHONPATH
+              export REPO_ROOT=$(git rev-parse --show-toplevel)
+            '';
           };
         }
       );
