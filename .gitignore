@@ -12,6 +12,7 @@ process_all.sh
 poetry.toml
 .pdm-build
 .pdm-python
+result
 
 # Future features
 src/pkiviewer/model/csr.py
