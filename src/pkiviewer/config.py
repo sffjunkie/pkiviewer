@@ -105,8 +105,7 @@ def config_from_file(filename: str) -> Configuration:
 value_types = (int, float, str)
 
 
-class MergeError(Exception):
-    ...
+class MergeError(Exception): ...
 
 
 def merge(base: ConfigSection, file: ConfigSection) -> ConfigSection:
