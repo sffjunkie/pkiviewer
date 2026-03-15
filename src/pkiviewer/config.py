@@ -158,7 +158,7 @@ def config_load(filename: str = config_file) -> Configuration:
 
 
 def has_key(key_path: str, config: Configuration):
-    section = config
+    section: Any = config
     elems = list(reversed(key_path.split(".")))
     try:
         while elem := elems.pop():
@@ -167,6 +167,6 @@ def has_key(key_path: str, config: Configuration):
             if elem not in section:
                 return False
 
-            section: Any = section[elem]
+            section = section[elem]
     except IndexError:
         return True
